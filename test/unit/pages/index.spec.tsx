@@ -1,12 +1,12 @@
 import { render, screen } from '@testing-library/react'
-import Index from 'src/pages/index'
+import Home from 'src/pages/index'
 
-describe('Index', () => {
-  it('renders hello world', () => {
-    render(<Index />)
+describe('Test Layout', () => {
+  it('renders the children', () => {
+    render(<Home />)
 
-    const helloWorld = screen.getByText(/Hello, World!/)
+    const container = screen.getByTestId('game-container')
 
-    expect(helloWorld).toBeInTheDocument()
+    expect(container).toBeInTheDocument()
   })
 })
