@@ -2,14 +2,13 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['cdn2.steamgriddb.com']
+    domains: ['images.ctfassets.net']
   },
   compiler: {
     styledComponents: true
   },
   images: {
-    loader: 'akamai',
-    path: ''
+    loader: 'custom'
   }
 }
 

@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
-import Image from 'next/image'
 import { classNames } from 'src/lib/utils'
 import styled from 'styled-components'
+import ContentfulImage from './contentfulImage'
 
 const GameWrapper = styled.div`
   border-radius: 0.375rem;
@@ -47,14 +47,21 @@ const GameWrapper = styled.div`
 `
 
 type GameProps = {
+  id: string
   title: string
   img: string
   rating: number
 }
 
-const Game: NextPage<GameProps> = ({ title, img, rating }) => (
-  <GameWrapper>
-    <Image src={img} alt={title} layout="responsive" width="600" height="900" />
+const Game: NextPage<GameProps> = ({ id, title, img, rating }) => (
+  <GameWrapper id={id}>
+    <ContentfulImage
+      src={img}
+      alt={title}
+      layout="responsive"
+      width="600"
+      height="900"
+    />
     <div className="relative bottom-0 flex items-center justify-center w-full">
       <span
         className={classNames(

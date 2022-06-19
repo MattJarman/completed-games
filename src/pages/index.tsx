@@ -1,23 +1,13 @@
-import type { NextPage } from 'next'
+import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Game from 'src/components/atoms/game'
+import { Game as ContentfulGame, getAllGames } from 'src/lib/contentful'
 
-const Home: NextPage = () => {
-  // TODO: Replace with contentful
-  const games = [
-    {
-      title: 'Dark Souls: Prepare to Die Edition',
-      image:
-        'https://cdn2.steamgriddb.com/file/sgdb-cdn/thumb/87d9e8f356af884c1692f14f6190d60f.jpg',
-      rating: 100,
-      completedOn: '2018-01-01',
-      playtime: 300,
-      completionStats: '100%',
-      tags: ['RPG', 'Souls-Like'],
-      notes: 'Really good game!'
-    }
-  ]
+type HomeProps = {
+  allGames: ContentfulGame[]
+}
 
+const Home: NextPage<HomeProps> = ({ allGames }) => {
   return (
     <div>
       <Head>
@@ -26,17 +16,28 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="my-8">
-        {/* TODO: Replace testid once we have something to assert exists */}
         <div
           data-testid="game-container"
           className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-6">
-          {games.map(({ title, rating, image }) => (
-            <Game key={title} title={title} img={image} rating={rating} />
+          {allGames.map(({ sys, title, image, rating }) => (
+            <Game
+              key={title}
+              id={sys.id}
+              title={title}
+              img={image.url}
+              rating={rating}
+            />
           ))}
         </div>
       </div>
     </div>
   )
+}
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  const allGames = await getAllGames()
+
+  return { props: { allGames } }
 }
 
 export default Home
