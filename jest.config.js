@@ -8,7 +8,9 @@ const customJestConfig = {
   collectCoverageFrom: [
     './src/**',
     '!./**/_*.tsx',
-    '!./src/lib/utils/index.ts'
+    '!./src/lib/utils/index.ts',
+    '!./src/lib/contentful/index.ts',
+    '!./src/pages/*.tsx'
   ],
   coverageThreshold: {
     global: {
