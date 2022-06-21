@@ -1,27 +1,23 @@
 import { render, screen } from '@testing-library/react'
 import Game from 'src/components/atoms/game'
 
-jest.mock('next/image')
-
 describe('Test Game', () => {
-  it.each`
-    rating | expected
-    ${0}   | ${'bg-red-500'}
-    ${51}  | ${'bg-yellow-500'}
-    ${61}  | ${'bg-yellow-400'}
-    ${76}  | ${'bg-green-300'}
-    ${81}  | ${'bg-green-500'}
-    ${95}  | ${'bg-blue-500'}
-  `(
-    'renders with a class of $expected when provided with $rating',
-    ({ rating, expected }) => {
-      render(
-        <Game title="Planescape: Torment" img="test.jpg" rating={rating} />
-      )
+  it('renders the game correctly', () => {
+    const title = 'Planescape: Torment'
+    render(
+      <Game
+        id="1"
+        slug="planescape-torment"
+        title={title}
+        img="test.jpg"
+        rating={90}
+      />
+    )
 
-      const ratingCard = screen.getByText(rating)
+    const img = screen.getByRole('img')
+    const rating = screen.getByText(90)
 
-      expect(ratingCard).toHaveClass(expected)
-    }
-  )
+    expect(rating).toBeInTheDocument()
+    expect(img).toHaveAttribute('alt', title)
+  })
 })
