@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
-import { classNames } from 'src/lib/utils'
+import Link from 'next/link'
+import { getRatingColour } from 'src/lib/utils'
 import styled from 'styled-components'
 import ContentfulImage from './contentfulImage'
 
@@ -48,35 +49,31 @@ const GameWrapper = styled.div`
 
 type GameProps = {
   id: string
+  slug: string
   title: string
   img: string
   rating: number
 }
 
-const Game: NextPage<GameProps> = ({ id, title, img, rating }) => (
-  <GameWrapper id={id}>
-    <ContentfulImage
-      src={img}
-      alt={title}
-      layout="responsive"
-      width="600"
-      height="900"
-    />
-    <div className="relative bottom-0 flex items-center justify-center w-full">
-      <span
-        className={classNames(
-          'rounded-sm px-2 font-bold z-50 absolute -bottom-2',
-          rating >= 95 ? 'bg-blue-500' : '',
-          rating > 80 && rating < 95 ? 'bg-green-500' : '',
-          rating > 75 && rating <= 80 ? 'bg-green-300' : '',
-          rating > 60 && rating <= 75 ? 'bg-yellow-400' : '',
-          rating > 50 && rating <= 60 ? 'bg-yellow-500' : '',
-          rating <= 50 ? 'bg-red-500' : ''
-        )}>
-        {rating}
-      </span>
-    </div>
-  </GameWrapper>
+const Game: NextPage<GameProps> = ({ id, slug, title, img, rating }) => (
+  <Link href={`/game/${slug}`}>
+    <GameWrapper id={id}>
+      <ContentfulImage
+        src={img}
+        alt={title}
+        layout="responsive"
+        width="600"
+        height="900"
+      />
+      <div className="relative bottom-0 flex items-center justify-center w-full">
+        <span
+          className="absolute z-50 px-2 font-bold rounded-sm -bottom-2"
+          style={{ background: getRatingColour(rating) }}>
+          {rating}
+        </span>
+      </div>
+    </GameWrapper>
+  </Link>
 )
 
 export default Game

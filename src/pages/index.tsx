@@ -19,9 +19,10 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
         <div
           data-testid="game-container"
           className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-6">
-          {allGames.map(({ sys, title, image, rating }) => (
+          {allGames.map(({ sys, slug, title, image, rating }) => (
             <Game
               key={title}
+              slug={slug}
               id={sys.id}
               title={title}
               img={image.url}
