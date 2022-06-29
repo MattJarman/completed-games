@@ -30,7 +30,7 @@ jobs:
           node-version: 16
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install --dev
+        run: pnpm i --production false
       - name: Build
         run: npm run build
       - name: Deploy
