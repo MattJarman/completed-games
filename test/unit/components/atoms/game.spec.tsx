@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react'
 import Game from 'src/components/atoms/game'
 
-describe('Test Game', () => {
+describe('Game', () => {
   it('renders the game correctly', () => {
     const title = 'Planescape: Torment'
     render(

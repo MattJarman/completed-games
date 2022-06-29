@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import Link from 'next/link'
 import { getRatingColour } from 'src/lib/utils'
 import styled from 'styled-components'
@@ -55,7 +54,7 @@ type GameProps = {
   rating: number
 }
 
-const Game: NextPage<GameProps> = ({ id, slug, title, img, rating }) => (
+const Game: React.FC<GameProps> = ({ id, slug, title, img, rating }) => (
   <Link href={`/game/${slug}`}>
     <GameWrapper id={id}>
       <ContentfulImage

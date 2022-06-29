@@ -11,15 +11,19 @@ export type StatTableProps = {
   rows: StatRow[]
 }
 
-const StatTable: NextPage<StatTableProps> = ({ rows, className }) => (
+const StatTable: React.FC<StatTableProps> = ({ rows, className }) => (
   <div className={className}>
     {rows.map((row, index) => (
-      <div key={index} className="flex justify-between">
-        <div className="flex items-center justify-center space-x-2 tracking-wider text-gray-500">
+      <div
+        key={index}
+        className="flex flex-col mb-2 sm:justify-between sm:flex-row">
+        <div className="flex items-center space-x-2 tracking-wider text-gray-400 sm:justify-center">
           {row.icon}
           <span>{row.name}</span>
         </div>
-        <div className="tracking-wide text-gray-300">{row.value}</div>
+        <div className="font-light tracking-wide text-gray-200">
+          {row.value}
+        </div>
       </div>
     ))}
   </div>
