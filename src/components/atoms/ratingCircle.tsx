@@ -1,4 +1,3 @@
-import type { NextPage } from 'next'
 import { getRatingColour } from 'src/lib/utils'
 
 type RatingCircleProps = {

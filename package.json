@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start",
-    "lint": "eslint . --ext .tsx,.ts",
+    "lint": "eslint . --ext .tsx,.ts --max-warnings 0",
     "lint:fix": "eslint . --ext .tsx,.ts --fix",
     "test:unit": "jest"
   },

@@ -1,5 +1,3 @@
-import type { NextPage } from 'next'
-
 export type StatRow = {
   icon: JSX.Element
   name: string
