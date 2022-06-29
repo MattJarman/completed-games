@@ -147,7 +147,7 @@ describe('GamePage', () => {
       const result = await getStaticPaths({})
 
       expect(result.paths).toEqual(['/game/risk-of-rain-2'])
-      expect(result.fallback).toEqual(true)
+      expect(result.fallback).toEqual(false)
     })
   })
 
