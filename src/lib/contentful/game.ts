@@ -1,3 +1,4 @@
+import type { Document } from '@contentful/rich-text-types'
 import { ContentfulGraphQLResponse, query } from './query'
 
 export type Game = {
@@ -15,8 +16,8 @@ export type Game = {
   playtime?: number
   tags: string[]
   notes: {
-    json: unknown
-  }
+    json: Document
+  } | null
   completionStats?: string
   difficulty?: string
 }
