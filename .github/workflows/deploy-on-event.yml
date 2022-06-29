@@ -1,10 +1,8 @@
-name: Deploy On Event
+name: Deploy
 
 on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+  repository_dispatch:
+    types: [publish_event]
 
 env:
   NODE_ENV: production
