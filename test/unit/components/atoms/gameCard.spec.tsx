@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
-import Game from 'src/components/atoms/game'
+import Game from 'src/components/atoms/gameCard'
 
-describe('Game', () => {
-  it('renders the game correctly', () => {
+describe('GameCard', () => {
+  it('renders the game card correctly', () => {
     const title = 'Planescape: Torment'
     render(
       <Game

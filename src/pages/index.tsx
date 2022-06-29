@@ -1,6 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import Game from 'src/components/atoms/game'
+import GameCard from 'src/components/atoms/gameCard'
 import { Game as ContentfulGame, getAllGames } from 'src/lib/contentful'
 
 type HomeProps = {
@@ -20,7 +20,7 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
           data-testid="game-container"
           className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-6">
           {allGames.map(({ sys, slug, title, image, rating }) => (
-            <Game
+            <GameCard
               key={title}
               slug={slug}
               id={sys.id}

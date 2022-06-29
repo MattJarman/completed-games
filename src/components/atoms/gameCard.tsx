@@ -54,7 +54,7 @@ type GameProps = {
   rating: number
 }
 
-const Game: React.FC<GameProps> = ({ id, slug, title, img, rating }) => (
+const GameCard: React.FC<GameProps> = ({ id, slug, title, img, rating }) => (
   <Link href={`/game/${slug}`}>
     <GameWrapper id={id}>
       <ContentfulImage
@@ -75,4 +75,4 @@ const Game: React.FC<GameProps> = ({ id, slug, title, img, rating }) => (
   </Link>
 )
 
-export default Game
+export default GameCard

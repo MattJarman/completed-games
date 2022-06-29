@@ -1,10 +1,10 @@
 import { render } from '@testing-library/react'
-import GameCard from 'src/components/atoms/game'
+import GameCard from 'src/components/atoms/gameCard'
 import { Game, getAllGames } from 'src/lib/contentful'
 import HomePage, { getStaticProps } from 'src/pages/index'
 
 jest.mock('src/lib/contentful')
-jest.mock('src/components/atoms/game')
+jest.mock('src/components/atoms/gameCard')
 
 const mockGetAllGames = getAllGames as jest.MockedFunction<typeof getAllGames>
 const mockGameCard = GameCard as jest.MockedFunction<typeof GameCard>
@@ -43,7 +43,6 @@ describe('HomePage', () => {
     it('returns allGames as props', async () => {
       mockGetAllGames.mockResolvedValueOnce([game] as unknown as Game[])
       const result = await getStaticProps({})
-      console.log(result)
       expect(result).toEqual({ props: { allGames: [game] } })
     })
   })
