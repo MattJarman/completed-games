@@ -5,7 +5,6 @@ import {
   CogIcon
 } from '@heroicons/react/solid'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
-import Head from 'next/head'
 import GameNotes from 'src/components/molecules/gameNotes'
 import GameStats from 'src/components/molecules/gameStats'
 import GameTags from 'src/components/molecules/gameTags'
@@ -19,10 +18,6 @@ type GamePageProps = {
 const GamePage: NextPage<GamePageProps> = ({ game }) => {
   return (
     <div>
-      <Head>
-        <title>{game.title} | Completed Games</title>
-        <meta name="description" content={game.title} />
-      </Head>
       <div className="mt-8">
         <GameTitle title={game.title} rating={game.rating} />
         <GameTags tags={game.tags} />
@@ -76,7 +71,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const allGames = await getAllGamesWithSlug()
   return {
     paths: allGames.map(({ slug }) => `/game/${slug}`),
-    fallback: true
+    fallback: false
   }
 }
 
