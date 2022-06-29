@@ -1,5 +1,6 @@
-import '@fontsource/open-sans/400.css'
-import '@fontsource/open-sans/700.css'
+import '@fontsource/inter/300.css'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/700.css'
 import type { NextPage } from 'next'
 import type { AppProps } from 'next/app'
 import Layout from 'src/components/templates/layout'
