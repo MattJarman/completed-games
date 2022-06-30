@@ -1,4 +1,4 @@
-name: Deploy On Event
+name: Deploy
 
 on:
   push:
