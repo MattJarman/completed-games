@@ -3,7 +3,7 @@ import { getRatingColour } from 'src/lib/utils'
 import styled from 'styled-components'
 import ContentfulImage from './contentfulImage'
 
-const GameWrapper = styled.div`
+const GameCardWrapper = styled.a`
   border-radius: 0.375rem;
   object-fit: contain;
   cursor: pointer;
@@ -46,7 +46,7 @@ const GameWrapper = styled.div`
   }
 `
 
-type GameProps = {
+type GameCardProps = {
   id: string
   slug: string
   title: string
@@ -54,9 +54,15 @@ type GameProps = {
   rating: number
 }
 
-const GameCard: React.FC<GameProps> = ({ id, slug, title, img, rating }) => (
-  <Link href={`/game/${slug}`}>
-    <GameWrapper id={id}>
+const GameCard: React.FC<GameCardProps> = ({
+  id,
+  slug,
+  title,
+  img,
+  rating
+}) => (
+  <Link href={`/game/${slug}`} passHref>
+    <GameCardWrapper id={id}>
       <ContentfulImage
         src={img}
         alt={title}
@@ -71,7 +77,7 @@ const GameCard: React.FC<GameProps> = ({ id, slug, title, img, rating }) => (
           {rating}
         </span>
       </div>
-    </GameWrapper>
+    </GameCardWrapper>
   </Link>
 )
 
