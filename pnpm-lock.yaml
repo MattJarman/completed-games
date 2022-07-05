@@ -3,7 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@contentful/rich-text-react-renderer': ^15.12.1
   '@contentful/rich-text-types': ^15.12.1
-  '@fontsource/inter': ^4.5.11
+  '@fontsource/nunito': ^4.5.9
   '@heroicons/react': ^1.0.6
   '@testing-library/jest-dom': ^5.16.4
   '@testing-library/react': ^13.3.0
@@ -41,7 +41,7 @@ specifiers:
 
 dependencies:
   '@contentful/rich-text-react-renderer': 15.12.1_ef5jwxihqo6n7gxfmzogljlgcm
-  '@fontsource/inter': 4.5.11
+  '@fontsource/nunito': 4.5.9
   '@heroicons/react': 1.0.6_react@18.1.0
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
   react: 18.1.0
@@ -484,8 +484,8 @@ packages:
       - supports-color
     dev: true
 
-  /@fontsource/inter/4.5.11:
-    resolution: {integrity: sha512-toizzQkfXL8YJcG/f8j3EYXYGQe4OxiDEItThSigvHU+cYNDw8HPp3wLYQX745hddsnHqOGCM4exitFSBOU8+w==}
+  /@fontsource/nunito/4.5.9:
+    resolution: {integrity: sha512-HlCPb5MSCSEx5KhIYsIU6JqlOtvfFnTT2RB0Gcz3Pdht9rkShEYaYKVvlgYQV03+Eom8HUAYQJcDT5gaRbm6AQ==}
     dev: false
 
   /@heroicons/react/1.0.6_react@18.1.0:

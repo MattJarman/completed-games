@@ -8,9 +8,7 @@ type TagProps = {
 const Tag: React.FC<TagProps> = ({ className, children }) => {
   return (
     <div
-      className={`px-2 py-1 text-xs bg-opacity-25 rounded-sm shadow-sm md:text-sm bg-sky-700 text-sky-400 ${
-        className || ''
-      }`}>
+      className={`px-2 py-1 text-xs rounded-sm shadow-sm md:text-sm bg-sky-700/25 text-sky-400 ${className}`}>
       {children}
     </div>
   )

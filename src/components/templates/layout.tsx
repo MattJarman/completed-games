@@ -6,7 +6,7 @@ type LayoutProps = {
 }
 
 const Layout: NextPage<LayoutProps> = ({ children }) => (
-  <div className="flex flex-col min-h-screen transition-colors duration-300">
+  <div className="flex flex-col min-h-screen transition-colors duration-300 bg-gray-900">
     <main className="container flex-grow px-4 mx-auto mb-auto lg:px-32">
       {children}
     </main>
