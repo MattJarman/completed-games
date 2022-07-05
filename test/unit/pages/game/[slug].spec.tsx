@@ -1,9 +1,9 @@
 import { EMPTY_DOCUMENT } from '@contentful/rich-text-types'
 import { render } from '@testing-library/react'
-import GameNotes from 'src/components/molecules/gameNotes'
-import GameStats from 'src/components/molecules/gameStats'
+import ContentfulRichText from 'src/components/atoms/contentfulRichText'
 import GameTags from 'src/components/molecules/gameTags'
 import GameTitle from 'src/components/molecules/gameTitle'
+import StatTable from 'src/components/molecules/statTable'
 import {
   Game,
   getAllGamesWithSlug,
@@ -14,8 +14,8 @@ import GamePage, { getStaticPaths, getStaticProps } from 'src/pages/game/[slug]'
 jest.mock('src/lib/contentful/game')
 jest.mock('src/components/molecules/gameTitle')
 jest.mock('src/components/molecules/gameTags')
-jest.mock('src/components/molecules/gameStats')
-jest.mock('src/components/molecules/gameNotes')
+jest.mock('src/components/molecules/statTable')
+jest.mock('src/components/atoms/contentfulRichText')
 jest.mock('@heroicons/react/solid')
 
 const mockGetAllGamesWithSlug = getAllGamesWithSlug as jest.MockedFunction<
@@ -28,8 +28,10 @@ const mockGetGameBySlug = getGameBySlug as jest.MockedFunction<
 
 const mockGameTitle = GameTitle as jest.MockedFunction<typeof GameTitle>
 const mockGameTags = GameTags as jest.MockedFunction<typeof GameTags>
-const mockGameStats = GameStats as jest.MockedFunction<typeof GameStats>
-const mockGameNotes = GameNotes as jest.MockedFunction<typeof GameNotes>
+const mockStatTable = StatTable as jest.MockedFunction<typeof StatTable>
+const mockContentfulRichText = ContentfulRichText as jest.MockedFunction<
+  typeof ContentfulRichText
+>
 
 const game = {
   title: 'Risk of Rain 2',
@@ -66,31 +68,17 @@ describe('GamePage', () => {
         {}
       )
       expect(mockGameTags).toHaveBeenCalledWith({ tags: game.tags }, {})
-      expect(mockGameStats).toHaveBeenCalledWith(
-        {
-          rows: [
-            expect.objectContaining({
-              name: 'Completed',
-              value: 'Sat Jan 01 2022'
-            }),
-            expect.objectContaining({
-              name: 'Playtime',
-              value: '40 hrs'
-            }),
-            expect.objectContaining({
-              name: 'Difficulty',
-              value: 'N/A'
-            }),
-            expect.objectContaining({
-              name: 'Completion Stats',
-              value: game.completionStats
-            })
-          ]
-        },
+      expect(mockStatTable).toHaveBeenCalledWith(
+        expect.objectContaining({
+          completedAt: game.completedAt,
+          playtime: game.playtime,
+          difficulty: game.difficulty,
+          completionStats: game.completionStats
+        }),
         {}
       )
-      expect(mockGameNotes).toHaveBeenCalledWith(
-        { document: game.notes.json },
+      expect(mockContentfulRichText).toHaveBeenCalledWith(
+        expect.objectContaining({ document: game.notes.json }),
         {}
       )
     })
@@ -107,27 +95,13 @@ describe('GamePage', () => {
         />
       )
 
-      expect(mockGameStats).toHaveBeenCalledWith(
-        {
-          rows: [
-            expect.objectContaining({
-              name: 'Completed',
-              value: 'Sat Jan 01 2022'
-            }),
-            expect.objectContaining({
-              name: 'Playtime',
-              value: '0 hrs'
-            }),
-            expect.objectContaining({
-              name: 'Difficulty',
-              value: '?'
-            }),
-            expect.objectContaining({
-              name: 'Completion Stats',
-              value: '?'
-            })
-          ]
-        },
+      expect(mockStatTable).toHaveBeenCalledWith(
+        expect.objectContaining({
+          completedAt: game.completedAt,
+          playtime: undefined,
+          difficulty: undefined,
+          completionStats: undefined
+        }),
         {}
       )
     })
@@ -135,7 +109,7 @@ describe('GamePage', () => {
     it('does not render the notes container if no notes were provided', async () => {
       render(<GamePage game={{ ...game, notes: null }} />)
 
-      expect(mockGameNotes).not.toHaveBeenCalled()
+      expect(mockContentfulRichText).not.toHaveBeenCalled()
     })
   })
 

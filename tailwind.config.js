@@ -6,14 +6,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      sans: ['Inter', 'sans-serif']
-    },
-    extend: {
-      colors: {
-        'steam-blue': {
-          DEFAULT: '#1b2838'
-        }
-      }
+      sans: ['Nunito', 'sans-serif']
     }
   },
   plugins: []

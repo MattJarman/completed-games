@@ -3,39 +3,33 @@ import {
   Options
 } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
-import styled from 'styled-components'
 
 export type ContentfulRichTextProps = {
+  className?: string
   document: Document
 }
-
-const StyledTableRow = styled.tr`
-  &:nth-child(even) {
-    background: #374151;
-  }
-`
 
 const options: Options = {
   renderNode: {
     [BLOCKS.TABLE]: (node, children) => (
-      <div className="relative overflow-x-auto bg-gray-800 rounded-md shadow-md sm:rounded-lg">
-        <table className="w-full text-gray-500 table-fixed">
+      <div className="relative overflow-x-auto rounded-sm shadow-md sm:rounded-md">
+        <table className="w-full text-white table-fixed">
           <tbody>{children}</tbody>
         </table>
       </div>
     ),
     [BLOCKS.TABLE_HEADER_CELL]: (node, children) => (
-      <th className="px-6 py-2 text-xs font-normal tracking-wider text-gray-400 uppercase md:text-sm">
+      <th className="px-6 py-3 text-xs tracking-wider text-left text-white bg-sky-700 md:text-base">
         {children}
       </th>
     ),
     [BLOCKS.TABLE_ROW]: (node, children) => (
-      <StyledTableRow className="text-xs font-light md:text-sm">
+      <tr className="text-xs font-light odd:bg-gray-800 md:text-base">
         {children}
-      </StyledTableRow>
+      </tr>
     ),
     [BLOCKS.TABLE_CELL]: (node, children) => (
-      <td className="p-3 text-white md:p-6">{children}</td>
+      <td className="p-3 text-white md:px-6 md:py-4">{children}</td>
     ),
     [BLOCKS.HEADING_1]: (node, children) => (
       <h1 className="mb-2 text-3xl md:text-5xl">{children}</h1>
@@ -80,12 +74,15 @@ const options: Options = {
 }
 
 const ContentfulRichText: React.FC<ContentfulRichTextProps> = ({
+  className,
   document
 }) => {
   const component = documentToReactComponents(document, options)
 
   return (
-    <div className="flex flex-col space-y-2 text-gray-200">{component}</div>
+    <div className={`flex flex-col space-y-2 text-gray-200 ${className}`}>
+      {component}
+    </div>
   )
 }
 
