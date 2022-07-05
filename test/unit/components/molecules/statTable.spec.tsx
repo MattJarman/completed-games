@@ -5,7 +5,7 @@ describe('StatTable', () => {
   it('renders the table correctly', () => {
     render(
       <StatTable
-        completedAt="2021-05-30T00:00:00.000+01:00"
+        completedAt="2021-05-30T12:00:00.000+01:00"
         playtime={12}
         difficulty="Hard"
         completionStats="100%, All Achievements"
