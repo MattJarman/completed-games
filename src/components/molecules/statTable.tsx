@@ -4,9 +4,9 @@ import {
   ClockIcon,
   CogIcon
 } from '@heroicons/react/solid'
-import Table from 'src/components/atoms/Table'
-import TableCell from 'src/components/atoms/TableCell'
-import TableRow from 'src/components/atoms/TableRow'
+import Table from 'src/components/atoms/table'
+import TableCell from 'src/components/atoms/tableCell'
+import TableRow from 'src/components/atoms/tableRow'
 import { Game } from 'src/lib/contentful'
 
 export type StatTableProps = Pick<
