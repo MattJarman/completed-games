@@ -4,9 +4,15 @@ import TableCell from 'src/components/atoms/tableCell'
 describe('TableCell', () => {
   it('renders the TableCell correctly', () => {
     render(
-      <TableCell>
-        <p data-testid="text"></p>
-      </TableCell>
+      <table>
+        <tbody>
+          <tr>
+            <TableCell>
+              <p data-testid="text"></p>
+            </TableCell>
+          </tr>
+        </tbody>
+      </table>
     )
 
     const text = screen.getByTestId('text')

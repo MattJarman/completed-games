@@ -80,7 +80,7 @@ const ContentfulRichText: React.FC<ContentfulRichTextProps> = ({
   const component = documentToReactComponents(document, options)
 
   return (
-    <div className={`flex flex-col space-y-2 text-gray-200 ${className}`}>
+    <div className={`flex flex-col space-y-2 ${className || ''}`}>
       {component}
     </div>
   )

@@ -5,7 +5,7 @@ describe('Table', () => {
   it('renders the Table correctly', () => {
     render(
       <Table>
-        <p data-testid="text"></p>
+        <tr data-testid="text"></tr>
       </Table>
     )
 

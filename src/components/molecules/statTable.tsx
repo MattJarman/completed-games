@@ -22,7 +22,9 @@ const StatTable: React.FC<StatTableProps> = ({
   className
 }) => (
   <Table
-    className={`md:border-[1px] border-gray-600 border-separate border-spacing-0 ${className}`}>
+    className={`md:border-[1px] border-gray-600 border-separate border-spacing-0 ${
+      className || ''
+    }`}>
     <TableRow className="hover:bg-sky-700">
       <TableCell className="pt-2 space-x-2 text-base font-bold md:p-2">
         <span>
