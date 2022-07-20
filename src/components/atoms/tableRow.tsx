@@ -6,7 +6,10 @@ type TableRowProps = {
 }
 
 const TableRow: React.FC<TableRowProps> = ({ children, className }) => (
-  <tr className={`flex flex-row flex-wrap group md:flex-nowrap ${className}`}>
+  <tr
+    className={`flex flex-row flex-wrap group md:flex-nowrap ${
+      className || ''
+    }`}>
     {children}
   </tr>
 )

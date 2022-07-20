@@ -20,8 +20,13 @@ const GamePage: NextPage<GamePageProps> = ({ game }) => (
     <div className="mt-8">
       <GameTitle title={game.title} rating={game.rating} />
       <GameTags tags={game.tags} />
-      <StatTable className="my-4 md:w-2/3 2xl:w-1/2" {...game} />
-      {game.notes && <ContentfulRichText document={game.notes.json} />}
+      <StatTable className="my-10 md:w-2/3 2xl:w-1/2" {...game} />
+      {game.notes && (
+        <ContentfulRichText
+          className="text-lg text-white"
+          document={game.notes.json}
+        />
+      )}
     </div>
   </div>
 )

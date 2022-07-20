@@ -7,7 +7,9 @@ type TableProps = {
 
 const Table: React.FC<TableProps> = ({ children, className }) => (
   <table
-    className={`font-thin flex md:table rounded-md text-white ${className}`}>
+    className={`font-thin flex md:table rounded-md text-white ${
+      className || ''
+    }`}>
     <tbody className="flex flex-col w-full">{children}</tbody>
   </table>
 )
