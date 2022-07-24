@@ -6,6 +6,12 @@ export type ContentfulGraphQLResponse<CollectionKey extends string, Item> = {
   }
 }
 
+export type RichTextLinks<T> = {
+  assets: {
+    block: T[]
+  }
+}
+
 export const query = async <T>(query: string): Promise<T> =>
   fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,

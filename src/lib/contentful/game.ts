@@ -1,5 +1,19 @@
 import type { Document } from '@contentful/rich-text-types'
-import { ContentfulGraphQLResponse, query } from './query'
+import { ContentfulGraphQLResponse, query, RichTextLinks } from './query'
+
+export type GameNotesLinksAssetBlock = {
+  fileName: string
+  title: string
+  description: string
+  url: string
+  width: string
+  height: string
+  sys: {
+    id: string
+  }
+}
+
+export type GameNotesLinks = RichTextLinks<GameNotesLinksAssetBlock>
 
 export type Game = {
   slug: string
@@ -17,14 +31,21 @@ export type Game = {
   tags: string[]
   notes: {
     json: Document
+    links: GameNotesLinks
   } | null
   completionStats?: string
   difficulty?: string
 }
 
-type GameGraphQLResponse = ContentfulGraphQLResponse<'gameCollection', Game>
+export type PartialGame = Omit<Game, 'notes'>
 
-const GAME_GRAPHQL_FIELDS = `
+type GameGraphQLResponse = ContentfulGraphQLResponse<'gameCollection', Game>
+type PartialGameGraphQLResponse = ContentfulGraphQLResponse<
+  'gameCollection',
+  PartialGame
+>
+
+const PARTIAL_GAME_GRAPHQL_FIELDS = `
 slug
 sys {
   id
@@ -38,24 +59,21 @@ image {
 }
 playtime
 tags 
-notes {
-  json
-}
 completionStats
 difficulty`
 
-const extractGameEntries = (entries: GameGraphQLResponse) =>
+const extractGameEntries = (entries: PartialGameGraphQLResponse) =>
   entries?.data?.gameCollection?.items || []
 
 const extractGame = (entries: GameGraphQLResponse) =>
   entries?.data?.gameCollection?.items?.[0]
 
-export const getAllGames = async (): Promise<Game[]> => {
-  const entries = await query<GameGraphQLResponse>(
+export const getAllGames = async (): Promise<PartialGame[]> => {
+  const entries = await query<PartialGameGraphQLResponse>(
     `query {
         gameCollection(order: completedAt_DESC) {
           items {
-            ${GAME_GRAPHQL_FIELDS}
+            ${PARTIAL_GAME_GRAPHQL_FIELDS}
           }
         }
       }`
@@ -64,12 +82,12 @@ export const getAllGames = async (): Promise<Game[]> => {
   return extractGameEntries(entries)
 }
 
-export const getAllGamesWithSlug = async (): Promise<Game[]> => {
-  const entries = await query<GameGraphQLResponse>(
+export const getAllGamesWithSlug = async (): Promise<PartialGame[]> => {
+  const entries = await query<PartialGameGraphQLResponse>(
     `query {
         gameCollection(where: { slug_exists: true }, order: completedAt_DESC) {
           items {
-            ${GAME_GRAPHQL_FIELDS}
+            ${PARTIAL_GAME_GRAPHQL_FIELDS}
           }
         }
       }`
@@ -85,7 +103,25 @@ export const getGameBySlug = async (
     `query {
         gameCollection(where: { slug: "${slug}" }, limit: 1) {
           items {
-            ${GAME_GRAPHQL_FIELDS}
+            ${PARTIAL_GAME_GRAPHQL_FIELDS}
+            notes {
+              json
+              links {
+                assets {
+                  block {
+                    fileName
+                    title
+                    description
+                    url
+                    width
+                    height
+                    sys {
+                      id
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }`

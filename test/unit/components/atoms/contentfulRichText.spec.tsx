@@ -1,6 +1,13 @@
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
 import { render, screen } from '@testing-library/react'
 import ContentfulRichText from 'src/components/atoms/contentfulRichText'
+import { GameNotesLinks } from 'src/lib/contentful'
+
+const links: GameNotesLinks = {
+  assets: {
+    block: []
+  }
+}
 
 describe('ContentfulRichText', () => {
   describe('headings', () => {
@@ -29,7 +36,7 @@ describe('ContentfulRichText', () => {
           ]
         }
 
-        render(<ContentfulRichText document={document} />)
+        render(<ContentfulRichText document={document} links={links} />)
 
         const heading = screen.getByRole('heading', { level: headingLevel })
         expect(heading).toBeInTheDocument()
@@ -74,7 +81,7 @@ describe('ContentfulRichText', () => {
         ]
       }
 
-      render(<ContentfulRichText document={document} />)
+      render(<ContentfulRichText document={document} links={links} />)
 
       const table = screen.getByRole('table')
       const cell = screen.getByRole('cell')
@@ -119,7 +126,7 @@ describe('ContentfulRichText', () => {
         ]
       }
 
-      render(<ContentfulRichText document={document} />)
+      render(<ContentfulRichText document={document} links={links} />)
 
       const link = screen.getByRole('link')
 
@@ -167,7 +174,7 @@ describe('ContentfulRichText', () => {
         ]
       }
 
-      render(<ContentfulRichText document={document} />)
+      render(<ContentfulRichText document={document} links={links} />)
 
       const list = screen.getByRole('list')
       const listItem = screen.getByRole('listitem')
@@ -192,7 +199,13 @@ describe('ContentfulRichText', () => {
         ]
       }
 
-      render(<ContentfulRichText document={document} />)
+      const links: GameNotesLinks = {
+        assets: {
+          block: []
+        }
+      }
+
+      render(<ContentfulRichText document={document} links={links} />)
 
       const hr = screen.getByRole('separator')
 
@@ -228,11 +241,61 @@ describe('ContentfulRichText', () => {
         ]
       }
 
-      render(<ContentfulRichText document={document} />)
+      render(<ContentfulRichText document={document} links={links} />)
 
       const quote = screen.getByText(text)
 
       expect(quote).toBeInTheDocument()
+    })
+  })
+
+  describe('embedded asset', () => {
+    it('renders the emedded asset', () => {
+      const id = '2hrNH4dLZUqRVNGQuvUTHE'
+      const altText = 'Test'
+      const document: Document = {
+        nodeType: BLOCKS.DOCUMENT,
+        data: {},
+        content: [
+          {
+            nodeType: BLOCKS.EMBEDDED_ASSET,
+            data: {
+              target: {
+                sys: {
+                  id,
+                  type: 'Link',
+                  linkType: 'Asset'
+                }
+              }
+            },
+            content: []
+          }
+        ]
+      }
+
+      const links: GameNotesLinks = {
+        assets: {
+          block: [
+            {
+              fileName: 'test',
+              title: altText,
+              description: 'This is a test',
+              url: '/image',
+              width: '400',
+              height: '400',
+              sys: {
+                id
+              }
+            }
+          ]
+        }
+      }
+
+      render(<ContentfulRichText document={document} links={links} />)
+
+      const image = screen.getByAltText(altText)
+
+      expect(image).toBeInTheDocument()
     })
   })
 })
