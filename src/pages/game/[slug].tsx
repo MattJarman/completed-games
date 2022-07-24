@@ -17,7 +17,7 @@ const GamePage: NextPage<GamePageProps> = ({ game }) => (
       <meta name="description" content={game.title} />
       <link rel="icon" href="/favicon.ico" />
     </Head>
-    <div className="mt-8">
+    <div className="my-8">
       <GameTitle title={game.title} rating={game.rating} />
       <GameTags tags={game.tags} />
       <StatTable className="my-10 md:w-2/3 2xl:w-1/2" {...game} />
@@ -25,6 +25,7 @@ const GamePage: NextPage<GamePageProps> = ({ game }) => (
         <ContentfulRichText
           className="text-lg text-white"
           document={game.notes.json}
+          links={game.notes.links}
         />
       )}
     </div>

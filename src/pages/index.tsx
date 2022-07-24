@@ -1,7 +1,7 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import GameCard from 'src/components/atoms/gameCard'
-import { Game as ContentfulGame, getAllGames } from 'src/lib/contentful'
+import { getAllGames, PartialGame as ContentfulGame } from 'src/lib/contentful'
 
 type HomeProps = {
   allGames: ContentfulGame[]

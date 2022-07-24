@@ -48,7 +48,8 @@ const game = {
   playtime: 40,
   tags: ['Roguelike'],
   notes: {
-    json: EMPTY_DOCUMENT
+    json: EMPTY_DOCUMENT,
+    links: { assets: { block: [] } }
   },
   completionStats: 'All Achievements',
   difficulty: 'N/A'
