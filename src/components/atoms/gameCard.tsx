@@ -72,7 +72,7 @@ const GameCard: React.FC<GameCardProps> = ({
       />
       <div className="relative bottom-0 flex items-center justify-center w-full">
         <span
-          className="absolute z-50 px-2 font-bold rounded-sm -bottom-2"
+          className="absolute z-40 px-2 font-bold rounded-sm -bottom-2"
           style={{ background: getRatingColour(rating) }}>
           {rating}
         </span>
