@@ -47,7 +47,6 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div className="my-8">
-        {/* TODO: Make sticky? */}
         <div className="flex items-center my-4">
           <div className="flex-grow"></div>
           <SearchInput
