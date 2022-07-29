@@ -42,7 +42,7 @@ const GameControls: React.FC<GameControlsProps> = ({
   }
 
   return (
-    <div className="flex items-center my-4 space-x-3">
+    <div className="flex flex-col-reverse my-4 space-y-3 sm:items-center sm:space-x-3 sm:flex-row">
       <div className="flex-grow"></div>
       <SearchInput
         id="game"
@@ -50,7 +50,7 @@ const GameControls: React.FC<GameControlsProps> = ({
         placeholder="Search"
         onChange={debouncedChangeHandler}
       />
-      <SelectMenu text="Sort">
+      <SelectMenu className="flex justify-end" text="Sort">
         <SelectMenuItem
           className="text-gray-300"
           activeClassName="bg-gray-900 text-white"

@@ -3,12 +3,17 @@ import { ChevronDownIcon } from '@heroicons/react/solid'
 import { Fragment, ReactNode } from 'react'
 
 export type SelectMenuProps = {
+  className?: string
   children: ReactNode
   text: string
 }
 
-const SelectMenu: React.FC<SelectMenuProps> = ({ text, children }) => (
-  <div>
+const SelectMenu: React.FC<SelectMenuProps> = ({
+  className = '',
+  text,
+  children
+}) => (
+  <div className={className}>
     <Menu as="div" className="relative inline-block text-left">
       <div>
         <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-300 bg-gray-800 rounded-md hover:bg-opacity-30">
