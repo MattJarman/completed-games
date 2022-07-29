@@ -4,6 +4,7 @@ specifiers:
   '@contentful/rich-text-react-renderer': ^15.12.1
   '@contentful/rich-text-types': ^15.12.1
   '@fontsource/nunito': ^4.5.9
+  '@headlessui/react': ^1.6.6
   '@heroicons/react': ^1.0.6
   '@testing-library/dom': ^8.16.0
   '@testing-library/jest-dom': ^5.16.4
@@ -47,6 +48,7 @@ specifiers:
 dependencies:
   '@contentful/rich-text-react-renderer': 15.12.1_ef5jwxihqo6n7gxfmzogljlgcm
   '@fontsource/nunito': 4.5.9
+  '@headlessui/react': 1.6.6_ef5jwxihqo6n7gxfmzogljlgcm
   '@heroicons/react': 1.0.6_react@18.1.0
   lodash: 4.17.21
   next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
@@ -496,6 +498,17 @@ packages:
 
   /@fontsource/nunito/4.5.9:
     resolution: {integrity: sha512-HlCPb5MSCSEx5KhIYsIU6JqlOtvfFnTT2RB0Gcz3Pdht9rkShEYaYKVvlgYQV03+Eom8HUAYQJcDT5gaRbm6AQ==}
+    dev: false
+
+  /@headlessui/react/1.6.6_ef5jwxihqo6n7gxfmzogljlgcm:
+    resolution: {integrity: sha512-MFJtmj9Xh/hhBMhLccGbBoSk+sk61BlP6sJe4uQcVMtXZhCgGqd2GyIQzzmsdPdTEWGSF434CBi8mnhR6um46Q==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^16 || ^17 || ^18
+      react-dom: ^16 || ^17 || ^18
+    dependencies:
+      react: 18.1.0
+      react-dom: 18.1.0_react@18.1.0
     dev: false
 
   /@heroicons/react/1.0.6_react@18.1.0:

@@ -17,14 +17,14 @@ const SearchInput: React.FC<SearchInputProps> = ({
     <div className="flex p-2 mx-auto">
       <label htmlFor={id} className="flex items-center flex-none pr-3">
         <span className="sr-only">{name}</span>
-        <SearchIcon className="w-6 h-6 text-gray-500" />
+        <SearchIcon className="w-5 h-5 text-gray-500" />
       </label>
       <input
         type="text"
         id={id}
         placeholder={placeholder}
         onChange={onChange}
-        className="flex-auto leading-6 text-gray-300 placeholder-gray-600 bg-transparent rounded-lg base focus:outline-none focus:placeholder-gray-400"
+        className="flex-auto h-5 leading-6 text-gray-300 placeholder-gray-600 bg-transparent rounded-lg base focus:outline-none focus:placeholder-gray-400"
       />
     </div>
   </div>
