@@ -1,5 +1,6 @@
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
+import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import GameCard from 'src/components/atoms/gameCard'
 import GameControls from 'src/components/molecules/gameControls'
@@ -38,23 +39,6 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
     )
   }, [allGames, filter])
 
-  const sortedGames = useMemo(
-    () =>
-      filteredGames
-        .sort(sortMap.get(sort))
-        .map(({ sys, slug, title, image, rating }) => (
-          <GameCard
-            key={title}
-            slug={slug}
-            id={sys.id}
-            title={title}
-            img={image.url}
-            rating={rating}
-          />
-        )),
-    [sort, filteredGames]
-  )
-
   return (
     <div>
       <Head>
@@ -74,7 +58,20 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
         <div
           data-testid="game-container"
           className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-6">
-          {sortedGames}
+          {filteredGames
+            .sort(sortMap.get(sort))
+            .map(({ sys, slug, title, image, rating }) => (
+              <Link key={title} href={`/game/${slug}`} passHref>
+                <a>
+                  <GameCard
+                    id={sys.id}
+                    title={title}
+                    img={image.url}
+                    rating={rating}
+                  />
+                </a>
+              </Link>
+            ))}
         </div>
       </div>
     </div>
