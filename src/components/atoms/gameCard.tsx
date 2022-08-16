@@ -1,9 +1,8 @@
-import Link from 'next/link'
 import { getRatingColour } from 'src/lib/utils'
 import styled from 'styled-components'
 import ContentfulImage from './contentfulImage'
 
-const GameCardWrapper = styled.a`
+const GameCardWrapper = styled.div`
   border-radius: 0.375rem;
   object-fit: contain;
   cursor: pointer;
@@ -48,37 +47,28 @@ const GameCardWrapper = styled.a`
 
 type GameCardProps = {
   id: string
-  slug: string
   title: string
   img: string
   rating: number
 }
 
-const GameCard: React.FC<GameCardProps> = ({
-  id,
-  slug,
-  title,
-  img,
-  rating
-}) => (
-  <Link href={`/game/${slug}`} passHref>
-    <GameCardWrapper id={id}>
-      <ContentfulImage
-        src={img}
-        alt={title}
-        layout="responsive"
-        width="600"
-        height="900"
-      />
-      <div className="relative bottom-0 flex items-center justify-center w-full">
-        <span
-          className="absolute z-40 px-2 font-bold rounded-sm -bottom-2"
-          style={{ background: getRatingColour(rating) }}>
-          {rating}
-        </span>
-      </div>
-    </GameCardWrapper>
-  </Link>
+const GameCard: React.FC<GameCardProps> = ({ id, title, img, rating }) => (
+  <GameCardWrapper id={id}>
+    <ContentfulImage
+      src={img}
+      alt={title}
+      layout="responsive"
+      width="600"
+      height="900"
+    />
+    <div className="relative bottom-0 flex items-center justify-center w-full">
+      <span
+        className="absolute z-40 px-2 font-bold rounded-sm -bottom-2"
+        style={{ background: getRatingColour(rating) }}>
+        {rating}
+      </span>
+    </div>
+  </GameCardWrapper>
 )
 
 export default GameCard
