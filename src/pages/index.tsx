@@ -1,3 +1,4 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -28,6 +29,7 @@ type HomeProps = {
 const Home: NextPage<HomeProps> = ({ allGames }) => {
   const [sort, setSort] = useState<SortMapKey>('completed')
   const [filter, setFilter] = useState('')
+  const [parent] = useAutoAnimate<HTMLDivElement>()
 
   const filteredGames = useMemo(() => {
     if (!filter) {
@@ -56,6 +58,7 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
           />
         </div>
         <div
+          ref={parent}
           data-testid="game-container"
           className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-6">
           {filteredGames
