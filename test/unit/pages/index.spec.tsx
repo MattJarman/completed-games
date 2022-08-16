@@ -8,6 +8,7 @@ import HomePage, { getStaticProps } from 'src/pages/index'
 jest.mock('src/lib/contentful')
 jest.mock('src/components/atoms/gameCard')
 jest.mock('lodash')
+jest.mock('@formkit/auto-animate/react')
 
 const mockGetAllGames = getAllGames as jest.MockedFunction<typeof getAllGames>
 const mockGameCard = GameCard as jest.MockedFunction<typeof GameCard>
@@ -53,7 +54,6 @@ describe('HomePage', () => {
           id: game.sys.id,
           img: game.image.url,
           rating: game.rating,
-          slug: game.slug,
           title: game.title
         },
         {}
