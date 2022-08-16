@@ -7,7 +7,7 @@ type RatingCircleProps = {
 const RatingCircle: React.FC<RatingCircleProps> = ({ rating }) => {
   return (
     <div
-      className="p-3 text-xl font-bold text-gray-200 border-4 rounded-full shadow-xl bg-black/50 sm:p-4 sm:text-3xl"
+      className="flex items-center justify-center text-xl font-bold text-gray-200 border-4 rounded-full shadow-xl w-14 h-14 bg-black/50 sm:text-3xl sm:w-20 sm:h-20"
       style={{ borderColor: getRatingColour(rating) }}>
       {rating}
     </div>
