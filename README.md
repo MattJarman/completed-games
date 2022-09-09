@@ -13,7 +13,7 @@
 ## 1. Clone
 
 ```sh
-https://github.com/MattJarman/completed-games.git
+git clone https://github.com/MattJarman/completed-games.git
 ```
 
 ## 2. Install
