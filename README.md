@@ -13,13 +13,13 @@
 ## 1. Clone
 
 ```sh
-git clone https://github.com/MattJarman/completed-games.git
+git clone https://github.com/MattJarman/completed-games.git && cd completed-games
 ```
 
 ## 2. Install
 
 ```sh
-(cd completed-games && pnpm i)
+pnpm i
 ```
 
 ## 3. Secrets
