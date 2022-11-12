@@ -4,7 +4,6 @@ import ContentfulImage from './contentfulImage'
 
 const GameCardWrapper = styled.div`
   border-radius: 0.375rem;
-  object-fit: contain;
   cursor: pointer;
   position: relative;
   padding: 0;
@@ -46,18 +45,23 @@ const GameCardWrapper = styled.div`
 `
 
 type GameCardProps = {
-  id: string
   title: string
   img: string
   rating: number
 }
 
-const GameCard: React.FC<GameCardProps> = ({ id, title, img, rating }) => (
-  <GameCardWrapper id={id}>
+const GameCard: React.FC<GameCardProps> = ({ title, img, rating }) => (
+  <GameCardWrapper>
     <ContentfulImage
       src={img}
       alt={title}
+      quality={75}
+      placeholder="blur"
+      blurDataURL={`${img}?w=100&q=5&fm=jpg&fl=progressive`}
       layout="responsive"
+      sizes="(max-width: 768px) 50vw,
+        (max-width: 1200px) 30vw,
+        20vw"
       width="600"
       height="900"
     />
