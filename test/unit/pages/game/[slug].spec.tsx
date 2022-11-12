@@ -1,22 +1,11 @@
-import { EMPTY_DOCUMENT } from '@contentful/rich-text-types'
-import { render } from '@testing-library/react'
-import ContentfulRichText from 'src/components/atoms/contentfulRichText'
-import GameTags from 'src/components/molecules/gameTags'
-import GameTitle from 'src/components/molecules/gameTitle'
-import StatTable from 'src/components/molecules/statTable'
-import {
-  Game,
-  getAllGamesWithSlug,
-  getGameBySlug
-} from 'src/lib/contentful/game'
+import { faker } from '@faker-js/faker'
+import { render, screen } from '@testing-library/react'
+import { getAllGamesWithSlug, getGameBySlug } from 'src/lib/contentful/game'
 import GamePage, { getStaticPaths, getStaticProps } from 'src/pages/game/[slug]'
+import { makeDocument } from 'test/utils/factories/contentful/document'
+import { makeGame } from 'test/utils/factories/game'
 
 jest.mock('src/lib/contentful/game')
-jest.mock('src/components/molecules/gameTitle')
-jest.mock('src/components/molecules/gameTags')
-jest.mock('src/components/molecules/statTable')
-jest.mock('src/components/atoms/contentfulRichText')
-jest.mock('@heroicons/react/solid')
 
 const mockGetAllGamesWithSlug = getAllGamesWithSlug as jest.MockedFunction<
   typeof getAllGamesWithSlug
@@ -26,103 +15,54 @@ const mockGetGameBySlug = getGameBySlug as jest.MockedFunction<
   typeof getGameBySlug
 >
 
-const mockGameTitle = GameTitle as jest.MockedFunction<typeof GameTitle>
-const mockGameTags = GameTags as jest.MockedFunction<typeof GameTags>
-const mockStatTable = StatTable as jest.MockedFunction<typeof StatTable>
-const mockContentfulRichText = ContentfulRichText as jest.MockedFunction<
-  typeof ContentfulRichText
->
-
-const game = {
-  title: 'Risk of Rain 2',
-  slug: 'risk-of-rain-2',
-  rating: 97,
-  completedAt: '2022-01-01',
-  sys: {
-    id: '4398572894734589'
-  },
-  image: {
-    title: 'risk-of-rain-2-img',
-    url: 'risk-of-rain-2-img-url'
-  },
-  playtime: 40,
-  tags: ['Roguelike'],
-  notes: {
-    json: EMPTY_DOCUMENT,
-    links: { assets: { block: [] } }
-  },
-  completionStats: 'All Achievements',
-  difficulty: 'N/A'
-}
+const text = faker.lorem.paragraph()
+const richText = makeDocument(text)
+const game = makeGame({
+  notes: { json: richText, links: { assets: { block: [] } } }
+})
 
 describe('GamePage', () => {
-  beforeEach(() => {
-    jest.resetAllMocks()
-  })
-
   describe('GamePage rendering', () => {
     it('renders the game page correctly', async () => {
       render(<GamePage game={game} />)
 
-      expect(mockGameTitle).toHaveBeenCalledWith(
-        { rating: game.rating, title: game.title },
-        {}
-      )
-      expect(mockGameTags).toHaveBeenCalledWith({ tags: game.tags }, {})
-      expect(mockStatTable).toHaveBeenCalledWith(
-        expect.objectContaining({
-          completedAt: game.completedAt,
-          playtime: game.playtime,
-          difficulty: game.difficulty,
-          completionStats: game.completionStats
-        }),
-        {}
-      )
-      expect(mockContentfulRichText).toHaveBeenCalledWith(
-        expect.objectContaining({ document: game.notes.json }),
-        {}
-      )
-    })
+      const title = screen.getByTestId('title')
+      const rating = screen.getByTestId('rating')
+      const tags = screen.getByTestId('game-tags')
+      const table = screen.getByTestId('table')
+      const richText = screen.getByTestId('rich-text')
 
-    it('handles stats that are undefined', async () => {
-      render(
-        <GamePage
-          game={{
-            ...game,
-            playtime: undefined,
-            difficulty: undefined,
-            completionStats: undefined
-          }}
-        />
-      )
+      expect(title).toHaveTextContent(game.title)
+      expect(rating).toHaveTextContent(game.rating.toString())
 
-      expect(mockStatTable).toHaveBeenCalledWith(
-        expect.objectContaining({
-          completedAt: game.completedAt,
-          playtime: undefined,
-          difficulty: undefined,
-          completionStats: undefined
-        }),
-        {}
-      )
+      game.tags.forEach((tag) => expect(tags).toHaveTextContent(tag))
+
+      expect(table).toHaveTextContent(new Date(game.completedAt).toDateString())
+      expect(table).toHaveTextContent(game.playtime.toString())
+      expect(table).toHaveTextContent(game.difficulty)
+      expect(table).toHaveTextContent(game.completionStats)
+
+      expect(richText).toHaveTextContent(text)
     })
 
     it('does not render the notes container if no notes were provided', async () => {
       render(<GamePage game={{ ...game, notes: null }} />)
 
-      expect(mockContentfulRichText).not.toHaveBeenCalled()
+      const richText = screen.queryByTestId('rich-text')
+
+      expect(richText).not.toBeInTheDocument()
     })
   })
 
   describe('getStaticPaths', () => {
     it('returns the mapped game slugs', async () => {
-      mockGetAllGamesWithSlug.mockResolvedValueOnce([
-        { slug: game.slug } as unknown as Game
-      ])
+      mockGetAllGamesWithSlug.mockResolvedValueOnce([game])
       const result = await getStaticPaths({})
 
-      expect(result.paths).toEqual(['/game/risk-of-rain-2'])
-      expect(result.fallback).toEqual(false)
+      expect(result).toEqual({
+        paths: [`/game/${game.slug}`],
+        fallback: false
+      })
     })
   })
 

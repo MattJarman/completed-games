@@ -2,18 +2,8 @@ import { Menu } from '@headlessui/react'
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import SelectMenuItem from 'src/components/atoms/selectMenuItem'
-import { classNames } from 'src/lib/utils'
-
-jest.mock('src/lib/utils/classNames')
-jest.mock('@heroicons/react/solid')
-
-const mockClassNames = classNames as jest.MockedFunction<typeof classNames>
 
 describe('SelectMenuItem', () => {
-  beforeAll(() => {
-    mockClassNames.mockReturnValue('')
-  })
-
   it('renders the select menu item', () => {
     render(
       <Menu>

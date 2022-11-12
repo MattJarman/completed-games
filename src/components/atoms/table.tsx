@@ -7,6 +7,7 @@ type TableProps = {
 
 const Table: React.FC<TableProps> = ({ children, className }) => (
   <table
+    data-testid="table"
     className={`font-thin flex md:table rounded-md text-white ${
       className || ''
     }`}>

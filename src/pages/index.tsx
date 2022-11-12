@@ -66,7 +66,12 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
             .map(({ sys, slug, title, image, rating }) => (
               <Link key={sys.id} href={`/game/${slug}`} passHref>
                 <a>
-                  <GameCard title={title} img={image.url} rating={rating} />
+                  <GameCard
+                    id={sys.id}
+                    title={title}
+                    img={image.url}
+                    rating={rating}
+                  />
                 </a>
               </Link>
             ))}

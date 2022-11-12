@@ -45,13 +45,14 @@ const GameCardWrapper = styled.div`
 `
 
 type GameCardProps = {
+  id: string
   title: string
   img: string
   rating: number
 }
 
-const GameCard: React.FC<GameCardProps> = ({ title, img, rating }) => (
-  <GameCardWrapper>
+const GameCard: React.FC<GameCardProps> = ({ id, title, img, rating }) => (
+  <GameCardWrapper data-testid={id}>
     <ContentfulImage
       src={img}
       alt={title}

@@ -7,7 +7,7 @@ type GameTitleProps = {
 }
 
 const GameTitle: React.FC<GameTitleProps> = ({ title, rating }) => (
-  <div className="flex items-center justify-between">
+  <div data-testid="game-title" className="flex items-center justify-between">
     <Title
       title={title}
       className="text-2xl font-bold tracking-wide text-gray-200 truncate md:text-4xl"></Title>

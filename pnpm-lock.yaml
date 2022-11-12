@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@contentful/rich-text-react-renderer': ^15.12.1
   '@contentful/rich-text-types': ^15.12.1
+  '@faker-js/faker': ^7.6.0
   '@fontsource/nunito': ^4.5.9
   '@formkit/auto-animate': 1.0.0-beta.1
   '@headlessui/react': ^1.6.6
@@ -60,6 +61,7 @@ dependencies:
 
 devDependencies:
   '@contentful/rich-text-types': 15.12.1
+  '@faker-js/faker': 7.6.0
   '@testing-library/dom': 8.16.0
   '@testing-library/jest-dom': 5.16.4
   '@testing-library/react': 13.3.0_ef5jwxihqo6n7gxfmzogljlgcm
@@ -496,6 +498,11 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /@faker-js/faker/7.6.0:
+    resolution: {integrity: sha512-XK6BTq1NDMo9Xqw/YkYyGjSsg44fbNwYRx7QK2CuoQgyy+f1rrTDHoExVM5PsyXCtfl2vs2vVJ0MN0yN6LppRw==}
+    engines: {node: '>=14.0.0', npm: '>=6.0.0'}
     dev: true
 
   /@fontsource/nunito/4.5.9:
