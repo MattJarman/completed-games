@@ -51,7 +51,6 @@ describe('HomePage', () => {
 
       expect(mockGameCard).toHaveBeenCalledWith(
         {
-          id: game.sys.id,
           img: game.image.url,
           rating: game.rating,
           title: game.title
