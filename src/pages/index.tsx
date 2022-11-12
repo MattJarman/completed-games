@@ -64,14 +64,9 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
           {filteredGames
             .sort(sortMap.get(sort))
             .map(({ sys, slug, title, image, rating }) => (
-              <Link key={title} href={`/game/${slug}`} passHref>
+              <Link key={sys.id} href={`/game/${slug}`} passHref>
                 <a>
-                  <GameCard
-                    id={sys.id}
-                    title={title}
-                    img={image.url}
-                    rating={rating}
-                  />
+                  <GameCard title={title} img={image.url} rating={rating} />
                 </a>
               </Link>
             ))}
