@@ -1,41 +1,25 @@
-import { PartialGame } from 'src/lib/contentful'
 import {
   sortByCompletedAtDescending,
   sortByNameAscending,
   sortByPlaytimeDescending,
   sortByRatingDescending
 } from 'src/lib/utils/sorters'
+import { makeGame } from 'test/utils/factories/game'
 
-const game1: PartialGame = {
+const game1 = makeGame({
   slug: 'a-hat-in-time',
   title: 'A Hat in Time',
   rating: 100,
   completedAt: '2022-01-02T12:00:00.000Z',
-  sys: {
-    id: '58349059034590'
-  },
-  image: {
-    title: 'A Hat in Time Cover',
-    url: '/image.png'
-  },
-  playtime: 999,
-  tags: []
-}
+  playtime: 999
+})
 
-const game2: PartialGame = {
+const game2 = makeGame({
   slug: 'yakuza-0',
   title: 'Yakuza 0',
   rating: 90,
-  completedAt: '2022-01-01T12:00:00.000Z',
-  sys: {
-    id: '23974234892'
-  },
-  image: {
-    title: 'Yakuza 0 Cover',
-    url: '/image.png'
-  },
-  tags: []
-}
+  completedAt: '2022-01-01T12:00:00.000Z'
+})
 
 describe('sorters', () => {
   test.each`

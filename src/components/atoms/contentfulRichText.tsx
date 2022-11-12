@@ -108,7 +108,9 @@ const ContentfulRichText: React.FC<ContentfulRichTextProps> = ({
   const component = documentToReactComponents(document, renderOptions(links))
 
   return (
-    <div className={`flex flex-col space-y-2 ${className || ''}`}>
+    <div
+      data-testid="rich-text"
+      className={`flex flex-col space-y-2 ${className || ''}`}>
       {component}
     </div>
   )
