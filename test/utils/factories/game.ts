@@ -5,7 +5,7 @@ import { makeGameNotesLinkAssetBlock } from './contentful/gameNotesLinksAssetBlo
 
 export const makeGame = (game?: Partial<Game>): Required<Game> => ({
   slug: faker.lorem.slug(),
-  title: faker.lorem.text(),
+  title: faker.lorem.word(),
   rating: faker.datatype.number({ min: 0, max: 100 }),
   completedAt: faker.datatype.datetime().toDateString(),
   sys: {

@@ -26,13 +26,14 @@ describe('GamePage', () => {
     it('renders the game page correctly', async () => {
       render(<GamePage game={game} />)
 
-      const title = screen.getByTestId('game-title')
+      const title = screen.getByTestId('title')
+      const rating = screen.getByTestId('rating')
       const tags = screen.getByTestId('game-tags')
       const table = screen.getByTestId('table')
       const richText = screen.getByTestId('rich-text')
 
       expect(title).toHaveTextContent(game.title)
-      expect(title).toHaveTextContent(game.rating.toString())
+      expect(rating).toHaveTextContent(game.rating.toString())
 
       game.tags.forEach((tag) => expect(tags).toHaveTextContent(tag))
 
