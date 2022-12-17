@@ -1,36 +1,7 @@
-import ContentfulRichText from '@ui/ContentfulRichText'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import GameTags from 'src/components/molecules/gameTags'
-import GameTitle from 'src/components/molecules/gameTitle'
-import StatTable from 'src/components/molecules/statTable'
-import { Game, getAllGamesWithSlug, getGameBySlug } from 'src/lib/contentful'
-
-type GamePageProps = {
-  game: Game
-}
-
-const GamePage: NextPage<GamePageProps> = ({ game }) => (
-  <div>
-    <Head>
-      <title>{game.title} | Completed Games</title>
-      <meta name="description" content={game.title} />
-      <link rel="icon" href="/favicon.ico" />
-    </Head>
-    <div className="flex flex-col my-8 space-y-8">
-      <GameTitle title={game.title} rating={game.rating} />
-      <GameTags tags={game.tags} />
-      <StatTable {...game} />
-      {game.notes && (
-        <ContentfulRichText
-          textSize="lg"
-          document={game.notes.json}
-          links={game.notes.links}
-        />
-      )}
-    </div>
-  </div>
-)
+import GamePage, { GamePageProps } from 'src/components/Game'
+import { getAllGamesWithSlug, getGameBySlug } from 'src/lib/contentful'
 
 export const getStaticProps: GetStaticProps<GamePageProps> = async ({
   params
@@ -56,4 +27,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 }
 
-export default GamePage
+const Game: NextPage<GamePageProps> = ({ game }) => (
+  <>
+    <Head>
+      <title>{game.title} | Completed Games</title>
+      <meta name="description" content={game.title} />
+      <link rel="icon" href="/favicon.ico" />
+    </Head>
+    <GamePage game={game} />
+  </>
+)
+
+export default Game

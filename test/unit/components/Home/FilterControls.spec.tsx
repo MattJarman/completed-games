@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import GameControls from 'src/components/molecules/gameControls'
+import FilterControls from 'src/components/Home/FilterControls'
 
-describe('GameControls', () => {
+describe('FilterControls', () => {
   it.each`
     menuItemText   | sort
     ${'Completed'} | ${'completed'}
@@ -16,7 +16,7 @@ describe('GameControls', () => {
       const setSort = jest.fn()
 
       render(
-        <GameControls
+        <FilterControls
           initialSort={'completed'}
           setSort={setSort}
           setFilter={jest.fn()}

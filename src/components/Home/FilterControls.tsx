@@ -9,15 +9,15 @@ import SelectMenu, { SelectMenuItem } from '@ui/SelectMenu'
 import TextInput from '@ui/TextInput'
 import { debounce } from 'lodash'
 import { useCallback, useMemo, useState } from 'react'
-import { SortMapKey } from 'src/pages'
+import { SortMapKey } from './index'
 
-export type GameControlsProps = {
+export type FilterControlsProps = {
   initialSort: SortMapKey
   setSort: (sort: SortMapKey) => void
   setFilter: (filter: string) => void
 }
 
-const GameControls: React.FC<GameControlsProps> = ({
+const FilterControls: React.FC<FilterControlsProps> = ({
   initialSort,
   setFilter,
   setSort
@@ -91,4 +91,4 @@ const GameControls: React.FC<GameControlsProps> = ({
   )
 }
 
-export default GameControls
+export default FilterControls
