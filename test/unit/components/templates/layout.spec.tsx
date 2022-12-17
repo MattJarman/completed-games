@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Layout from 'src/components/templates/layout'
+import Layout from 'src/components/templates/Layout'
 
 describe('Test Layout', () => {
   it('renders the children', () => {

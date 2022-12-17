@@ -4,6 +4,7 @@ const createJestConfig = nextJest({
   dir: './'
 })
 
+/** @type {import('jest').Config} */
 const customJestConfig = {
   collectCoverageFrom: [
     './src/**',
@@ -22,7 +23,10 @@ const customJestConfig = {
   collectCoverage: true,
   moduleDirectories: ['node_modules', '<rootDir>/'],
   setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  testEnvironment: 'jest-environment-jsdom'
+  testEnvironment: 'jest-environment-jsdom',
+  moduleNameMapper: {
+    '^@ui/(.*)$': '<rootDir>/src/components/ui/$1'
+  }
 }
 
 module.exports = createJestConfig(customJestConfig)
