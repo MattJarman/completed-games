@@ -1,6 +1,6 @@
 import { getRatingColour } from 'src/lib/utils'
 import styled from 'styled-components'
-import ContentfulImage from './contentfulImage'
+import ContentfulImage from '@ui/ContentfulImage'
 
 const GameCardWrapper = styled.div`
   border-radius: 0.375rem;

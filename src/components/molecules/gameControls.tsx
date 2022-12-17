@@ -2,12 +2,13 @@ import {
   CalendarIcon,
   ChartBarIcon,
   ClockIcon,
+  SearchIcon,
   TranslateIcon
 } from '@heroicons/react/solid'
+import TextInput from '@ui/TextInput'
 import { debounce } from 'lodash'
 import { useCallback, useMemo, useState } from 'react'
 import { SortMapKey } from 'src/pages'
-import SearchInput from '../atoms/searchInput'
 import SelectMenu from '../atoms/selectMenu'
 import SelectMenuItem from '../atoms/selectMenuItem'
 
@@ -44,11 +45,12 @@ const GameControls: React.FC<GameControlsProps> = ({
   return (
     <div className="flex flex-col-reverse my-4 space-y-3 sm:items-center sm:space-x-3 sm:flex-row">
       <div className="flex-grow"></div>
-      <SearchInput
+      <TextInput
         id="game"
         name="filter"
         placeholder="Search"
         onChange={debouncedChangeHandler}
+        Icon={SearchIcon}
       />
       <SelectMenu className="flex justify-end" text="Sort">
         <SelectMenuItem

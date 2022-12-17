@@ -4,7 +4,7 @@ import {
 } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
 import { GameNotesLinks } from 'src/lib/contentful'
-import ContentfulImage from './contentfulImage'
+import ContentfulImage from '@ui/ContentfulImage'
 
 export type ContentfulRichTextProps = {
   className?: string

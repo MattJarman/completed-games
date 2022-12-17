@@ -1,22 +1,23 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import SearchInput from 'src/components/atoms/searchInput'
+import TextInput, { TextInputProps } from '@ui/TextInput'
 
-describe('SearchInput', () => {
+describe('TextInput', () => {
   it('renders the input', async () => {
     const onChange = jest.fn()
-    const placeholder = 'Search'
     const inputText = 'test'
     const user = userEvent.setup()
+    const placeholder = 'Search'
 
-    render(
-      <SearchInput
-        id="search"
-        name="search"
-        placeholder={placeholder}
-        onChange={onChange}
-      />
-    )
+    const props: TextInputProps = {
+      id: 'search',
+      name: 'search',
+      placeholder,
+      Icon: () => <svg></svg>,
+      onChange
+    }
+
+    render(<TextInput {...props} />)
 
     const input = screen.getByPlaceholderText(placeholder)
     expect(input).toBeInTheDocument()
