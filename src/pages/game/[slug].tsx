@@ -1,6 +1,6 @@
+import ContentfulRichText from '@ui/ContentfulRichText'
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
-import ContentfulRichText from 'src/components/atoms/contentfulRichText'
 import GameTags from 'src/components/molecules/gameTags'
 import GameTitle from 'src/components/molecules/gameTitle'
 import StatTable from 'src/components/molecules/statTable'
@@ -23,7 +23,7 @@ const GamePage: NextPage<GamePageProps> = ({ game }) => (
       <StatTable {...game} />
       {game.notes && (
         <ContentfulRichText
-          className="text-lg text-white"
+          textSize="lg"
           document={game.notes.json}
           links={game.notes.links}
         />

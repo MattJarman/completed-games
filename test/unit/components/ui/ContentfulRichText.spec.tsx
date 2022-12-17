@@ -1,6 +1,6 @@
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
 import { render, screen } from '@testing-library/react'
-import ContentfulRichText from 'src/components/atoms/contentfulRichText'
+import ContentfulRichText from '@ui/ContentfulRichText'
 import { GameNotesLinks } from 'src/lib/contentful'
 
 const links: GameNotesLinks = {

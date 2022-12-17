@@ -4,10 +4,27 @@ import {
 } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
 import ContentfulImage from '@ui/ContentfulImage'
+import { cva, VariantProps } from 'class-variance-authority'
+import { FC } from 'react'
 import { GameNotesLinks } from 'src/lib/contentful'
 
-export type ContentfulRichTextProps = {
-  className?: string
+const richTextStyles = cva('flex flex-col space-y-2', {
+  variants: {
+    intent: {
+      primary: 'text-white'
+    },
+    textSize: {
+      base: 'text-base',
+      lg: 'text-lg'
+    }
+  },
+  defaultVariants: {
+    intent: 'primary',
+    textSize: 'base'
+  }
+})
+
+export type ContentfulRichTextProps = VariantProps<typeof richTextStyles> & {
   document: Document
   links: GameNotesLinks
 }
@@ -100,17 +117,15 @@ const renderOptions = (links: GameNotesLinks): Options => {
   }
 }
 
-const ContentfulRichText: React.FC<ContentfulRichTextProps> = ({
-  className,
+const ContentfulRichText: FC<ContentfulRichTextProps> = ({
   document,
-  links
+  links,
+  ...props
 }) => {
   const component = documentToReactComponents(document, renderOptions(links))
 
   return (
-    <div
-      data-testid="rich-text"
-      className={`flex flex-col space-y-2 ${className || ''}`}>
+    <div data-testid="rich-text" className={richTextStyles(props)}>
       {component}
     </div>
   )
