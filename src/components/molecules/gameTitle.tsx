@@ -1,5 +1,5 @@
 import Title from '@ui/Title'
-import RatingCircle from 'src/components/atoms/ratingCircle'
+import RatingCircle from '@ui/RatingCircle'
 
 type GameTitleProps = {
   title: string
