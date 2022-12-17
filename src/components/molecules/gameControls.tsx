@@ -5,12 +5,11 @@ import {
   SearchIcon,
   TranslateIcon
 } from '@heroicons/react/solid'
+import SelectMenu, { SelectMenuItem } from '@ui/SelectMenu'
 import TextInput from '@ui/TextInput'
 import { debounce } from 'lodash'
 import { useCallback, useMemo, useState } from 'react'
 import { SortMapKey } from 'src/pages'
-import SelectMenu from '../atoms/selectMenu'
-import SelectMenuItem from '../atoms/selectMenuItem'
 
 export type GameControlsProps = {
   initialSort: SortMapKey
@@ -52,48 +51,42 @@ const GameControls: React.FC<GameControlsProps> = ({
         onChange={debouncedChangeHandler}
         Icon={SearchIcon}
       />
-      <SelectMenu className="flex justify-end" text="Sort">
-        <SelectMenuItem
-          className="text-gray-300"
-          activeClassName="bg-gray-900 text-white"
-          onClick={() => handleSortClick('completed')}
-          selected={selectedSort === 'completed'}>
-          <span className="flex items-center flex-grow">
-            <CalendarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-            Completed
-          </span>
-        </SelectMenuItem>
-        <SelectMenuItem
-          className="text-gray-300"
-          activeClassName="bg-gray-900 text-white"
-          onClick={() => handleSortClick('playtime')}
-          selected={selectedSort === 'playtime'}>
-          <span className="flex items-center flex-grow">
-            <ClockIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-            Playtime
-          </span>
-        </SelectMenuItem>
-        <SelectMenuItem
-          className="text-gray-300"
-          activeClassName="bg-gray-900 text-white"
-          onClick={() => handleSortClick('rating')}
-          selected={selectedSort === 'rating'}>
-          <span className="flex items-center flex-grow">
-            <ChartBarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-            Rating
-          </span>
-        </SelectMenuItem>
-        <SelectMenuItem
-          className="text-gray-300"
-          activeClassName="bg-gray-900 text-white"
-          onClick={() => handleSortClick('name')}
-          selected={selectedSort === 'name'}>
-          <span className="flex items-center flex-grow">
-            <TranslateIcon className="w-5 h-5 mr-2" aria-hidden="true" />
-            Name
-          </span>
-        </SelectMenuItem>
-      </SelectMenu>
+      <div className="flex justify-end">
+        <SelectMenu text="Sort">
+          <SelectMenuItem
+            onClick={() => handleSortClick('completed')}
+            selected={selectedSort === 'completed'}>
+            <span className="flex items-center flex-grow">
+              <CalendarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              Completed
+            </span>
+          </SelectMenuItem>
+          <SelectMenuItem
+            onClick={() => handleSortClick('playtime')}
+            selected={selectedSort === 'playtime'}>
+            <span className="flex items-center flex-grow">
+              <ClockIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              Playtime
+            </span>
+          </SelectMenuItem>
+          <SelectMenuItem
+            onClick={() => handleSortClick('rating')}
+            selected={selectedSort === 'rating'}>
+            <span className="flex items-center flex-grow">
+              <ChartBarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              Rating
+            </span>
+          </SelectMenuItem>
+          <SelectMenuItem
+            onClick={() => handleSortClick('name')}
+            selected={selectedSort === 'name'}>
+            <span className="flex items-center flex-grow">
+              <TranslateIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              Name
+            </span>
+          </SelectMenuItem>
+        </SelectMenu>
+      </div>
     </div>
   )
 }
