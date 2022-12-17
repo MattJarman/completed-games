@@ -3,8 +3,8 @@ import {
   Options
 } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
-import { GameNotesLinks } from 'src/lib/contentful'
 import ContentfulImage from '@ui/ContentfulImage'
+import { GameNotesLinks } from 'src/lib/contentful'
 
 export type ContentfulRichTextProps = {
   className?: string
@@ -37,42 +37,42 @@ const renderOptions = (links: GameNotesLinks): Options => {
           </div>
         )
       },
-      [BLOCKS.TABLE]: (node, children) => (
+      [BLOCKS.TABLE]: (_, children) => (
         <div className="relative overflow-x-auto rounded-sm shadow-md sm:rounded-md">
           <table className="w-full text-white table-fixed">
             <tbody>{children}</tbody>
           </table>
         </div>
       ),
-      [BLOCKS.TABLE_HEADER_CELL]: (node, children) => (
+      [BLOCKS.TABLE_HEADER_CELL]: (_, children) => (
         <th className="px-6 py-3 text-xs tracking-wider text-left text-white bg-sky-700 md:text-base">
           {children}
         </th>
       ),
-      [BLOCKS.TABLE_ROW]: (node, children) => (
+      [BLOCKS.TABLE_ROW]: (_, children) => (
         <tr className="text-xs font-light odd:bg-gray-800 md:text-base">
           {children}
         </tr>
       ),
-      [BLOCKS.TABLE_CELL]: (node, children) => (
+      [BLOCKS.TABLE_CELL]: (_, children) => (
         <td className="p-3 text-white md:px-6 md:py-4">{children}</td>
       ),
-      [BLOCKS.HEADING_1]: (node, children) => (
+      [BLOCKS.HEADING_1]: (_, children) => (
         <h1 className="mb-2 text-3xl md:text-5xl">{children}</h1>
       ),
-      [BLOCKS.HEADING_2]: (node, children) => (
+      [BLOCKS.HEADING_2]: (_, children) => (
         <h2 className="mb-2 text-2xl md:text-4xl">{children}</h2>
       ),
-      [BLOCKS.HEADING_3]: (node, children) => (
+      [BLOCKS.HEADING_3]: (_, children) => (
         <h3 className="mb-2 text-xl md:text-3xl">{children}</h3>
       ),
-      [BLOCKS.HEADING_4]: (node, children) => (
+      [BLOCKS.HEADING_4]: (_, children) => (
         <h4 className="mb-2 text-lg md:text-2xl">{children}</h4>
       ),
-      [BLOCKS.HEADING_5]: (node, children) => (
+      [BLOCKS.HEADING_5]: (_, children) => (
         <h5 className="mb-2 text-base md:text-xl">{children}</h5>
       ),
-      [BLOCKS.HEADING_6]: (node, children) => (
+      [BLOCKS.HEADING_6]: (_, children) => (
         <h6 className="mb-2 text-sm md:text-lg">{children}</h6>
       ),
       [INLINES.HYPERLINK]: ({ data }, children) => (
@@ -84,13 +84,13 @@ const renderOptions = (links: GameNotesLinks): Options => {
           {children}
         </a>
       ),
-      [BLOCKS.UL_LIST]: (node, children) => (
+      [BLOCKS.UL_LIST]: (_, children) => (
         <ul className="ml-6 list-disc">{children}</ul>
       ),
-      [BLOCKS.OL_LIST]: (node, children) => (
+      [BLOCKS.OL_LIST]: (_, children) => (
         <ul className="ml-6 list-decimal">{children}</ul>
       ),
-      [BLOCKS.QUOTE]: (node, children) => (
+      [BLOCKS.QUOTE]: (_, children) => (
         <blockquote className="pr-8 border-l-[6px] border-black border-opacity-25">
           <div className="pl-4">{children}</div>
         </blockquote>
