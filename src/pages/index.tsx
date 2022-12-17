@@ -3,7 +3,7 @@ import type { GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
 import { useMemo, useState } from 'react'
-import GameCard from 'src/components/atoms/gameCard'
+import GameCard from '@ui/GameCard'
 import GameControls from 'src/components/molecules/gameControls'
 import { getAllGames, PartialGame as ContentfulGame } from 'src/lib/contentful'
 import {
