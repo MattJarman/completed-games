@@ -1,8 +1,7 @@
 import { useAutoAnimate } from '@formkit/auto-animate/react'
 import GameCard from '@ui/GameCard'
-import type { NextPage } from 'next'
 import Link from 'next/link'
-import { useMemo, useState } from 'react'
+import { FC, useMemo, useState } from 'react'
 import { PartialGame as ContentfulGame } from 'src/lib/contentful'
 import {
   sortByCompletedAtDescending,
@@ -25,7 +24,7 @@ export type HomeProps = {
   allGames: ContentfulGame[]
 }
 
-const HomePage: NextPage<HomeProps> = ({ allGames }) => {
+const HomePage: FC<HomeProps> = ({ allGames }) => {
   const [sort, setSort] = useState<SortMapKey>('completed')
   const [filter, setFilter] = useState('')
   const [parent] = useAutoAnimate<HTMLDivElement>()
