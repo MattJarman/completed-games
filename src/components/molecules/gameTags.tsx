@@ -1,4 +1,4 @@
-import Tag from 'src/components/atoms/tag'
+import Tag from '@ui/Tag'
 
 type GameTagsProps = {
   tags: string[]

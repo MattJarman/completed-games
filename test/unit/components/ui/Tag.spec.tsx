@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Tag from 'src/components/atoms/tag'
+import Tag from '@ui/Tag'
 
 describe('Tag', () => {
   it('renders the tag correctly', () => {
