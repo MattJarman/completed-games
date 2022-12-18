@@ -1,19 +1,10 @@
-export type ContentfulGraphQLResponse<CollectionKey extends string, Item> = {
-  data?: {
-    [key in CollectionKey]?: {
-      items?: Item[]
-    }
-  }
-}
+import { z } from 'zod'
 
-export type RichTextLinks<T> = {
-  assets: {
-    block: T[]
-  }
-}
-
-export const query = async <T>(query: string): Promise<T> =>
-  fetch(
+export const query = async <T extends z.ZodTypeAny>(
+  query: string,
+  schema: T
+): Promise<z.infer<T>> => {
+  const response = await fetch(
     `https://graphql.contentful.com/content/v1/spaces/${process.env.CONTENTFUL_SPACE_ID}`,
     {
       method: 'POST',
@@ -24,3 +15,12 @@ export const query = async <T>(query: string): Promise<T> =>
       body: JSON.stringify({ query })
     }
   ).then((response) => response.json())
+
+  const result = schema.safeParse(response)
+  if (!result.success) {
+    console.error(JSON.stringify(result.error, null, 2))
+    throw new Error('Invalid response from Contentful')
+  }
+
+  return result.data
+}

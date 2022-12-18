@@ -5,12 +5,14 @@ import {
   CogIcon
 } from '@heroicons/react/solid'
 import Table, { TableCell, TableRow } from '@ui/Table'
-import { Game } from 'src/lib/contentful'
+import { Game } from 'src/schemas/Game'
 
-export type StatTableProps = Pick<
-  Game,
-  'completedAt' | 'playtime' | 'difficulty' | 'completionStats'
->
+export type StatTableProps<> = {
+  completedAt: Game['completedAt']
+  playtime?: Game['playtime']
+  difficulty?: Game['difficulty']
+  completionStats?: Game['completionStats']
+}
 
 const StatTable: React.FC<StatTableProps> = ({
   completedAt,

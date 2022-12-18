@@ -2,7 +2,7 @@ import { useAutoAnimate } from '@formkit/auto-animate/react'
 import GameCard from '@ui/GameCard'
 import Link from 'next/link'
 import { FC, useMemo, useState } from 'react'
-import { PartialGame as ContentfulGame } from 'src/lib/contentful'
+import { Game as ContentfulGame } from 'src/schemas/Game'
 import {
   sortByCompletedAtDescending,
   sortByNameAscending,

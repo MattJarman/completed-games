@@ -1,9 +1,8 @@
 import { faker } from '@faker-js/faker'
-import { Game } from 'src/lib/contentful'
+import { Game } from 'src/schemas/Game'
 import { makeDocument } from './contentful/document'
-import { makeGameNotesLinkAssetBlock } from './contentful/gameNotesLinksAssetBlock'
 
-export const makeGame = (game?: Partial<Game>): Required<Game> => ({
+export const makeGame = (game?: Partial<Game>): Game => ({
   slug: faker.lorem.slug(),
   title: faker.lorem.word(),
   rating: faker.datatype.number({ min: 0, max: 100 }),
@@ -24,7 +23,19 @@ export const makeGame = (game?: Partial<Game>): Required<Game> => ({
     json: makeDocument(),
     links: {
       assets: {
-        block: [makeGameNotesLinkAssetBlock()]
+        block: [
+          {
+            fileName: faker.system.fileName(),
+            title: faker.lorem.text(),
+            description: faker.lorem.paragraph(),
+            url: faker.image.imageUrl(),
+            width: faker.datatype.number({ min: 100, max: 600 }),
+            height: faker.datatype.number({ min: 100, max: 600 }),
+            sys: {
+              id: faker.datatype.uuid()
+            }
+          }
+        ]
       }
     },
     ...game?.notes

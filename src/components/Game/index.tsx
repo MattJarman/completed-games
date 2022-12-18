@@ -3,7 +3,7 @@ import RatingCircle from '@ui/RatingCircle'
 import Tag from '@ui/Tag'
 import Title from '@ui/Title'
 import { FC } from 'react'
-import { Game } from 'src/lib/contentful'
+import { Game } from 'src/schemas/Game'
 import StatTable from './StatTable'
 
 export type GamePageProps = {

@@ -6,7 +6,7 @@ import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
 import ContentfulImage from '@ui/ContentfulImage'
 import { cva, VariantProps } from 'class-variance-authority'
 import { FC } from 'react'
-import { GameNotesLinks } from 'src/lib/contentful'
+import { GameRichTextLinks } from 'src/schemas/Game'
 
 const richTextStyles = cva('flex flex-col space-y-2', {
   variants: {
@@ -26,10 +26,10 @@ const richTextStyles = cva('flex flex-col space-y-2', {
 
 export type ContentfulRichTextProps = VariantProps<typeof richTextStyles> & {
   document: Document
-  links: GameNotesLinks
+  links: GameRichTextLinks
 }
 
-const renderOptions = (links: GameNotesLinks): Options => {
+const renderOptions = (links: GameRichTextLinks): Options => {
   const assetMap = new Map()
 
   for (const asset of links.assets.block) {

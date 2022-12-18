@@ -1,15 +1,13 @@
 import { faker } from '@faker-js/faker'
 import { render, screen } from '@testing-library/react'
-import { getAllGamesWithSlug, getGameBySlug } from 'src/lib/contentful/game'
+import { getAllGames, getGameBySlug } from 'src/lib/contentful/game'
 import GamePage, { getStaticPaths, getStaticProps } from 'src/pages/game/[slug]'
 import { makeDocument } from 'test/utils/factories/contentful/document'
 import { makeGame } from 'test/utils/factories/game'
 
 jest.mock('src/lib/contentful/game')
 
-const mockGetAllGamesWithSlug = getAllGamesWithSlug as jest.MockedFunction<
-  typeof getAllGamesWithSlug
->
+const mockGetAllGames = getAllGames as jest.MockedFunction<typeof getAllGames>
 
 const mockGetGameBySlug = getGameBySlug as jest.MockedFunction<
   typeof getGameBySlug
@@ -24,7 +22,14 @@ const game = makeGame({
 describe('GamePage', () => {
   describe('GamePage rendering', () => {
     it('renders the game page correctly', async () => {
-      render(<GamePage game={game} />)
+      const gameWithAllFields = {
+        ...game,
+        playtime: 123,
+        difficulty: 'Easy',
+        completionStats: '100%'
+      } as const
+
+      render(<GamePage game={gameWithAllFields} />)
 
       const title = screen.getByTestId('title')
       const rating = screen.getByTestId('rating')
@@ -32,15 +37,19 @@ describe('GamePage', () => {
       const table = screen.getByTestId('table')
       const richText = screen.getByTestId('rich-text')
 
-      expect(title).toHaveTextContent(game.title)
-      expect(rating).toHaveTextContent(game.rating.toString())
+      expect(title).toHaveTextContent(gameWithAllFields.title)
+      expect(rating).toHaveTextContent(gameWithAllFields.rating.toString())
 
-      game.tags.forEach((tag) => expect(tags).toHaveTextContent(tag))
+      gameWithAllFields.tags.forEach((tag) =>
+        expect(tags).toHaveTextContent(tag)
+      )
 
-      expect(table).toHaveTextContent(new Date(game.completedAt).toDateString())
-      expect(table).toHaveTextContent(game.playtime.toString())
-      expect(table).toHaveTextContent(game.difficulty)
-      expect(table).toHaveTextContent(game.completionStats)
+      expect(table).toHaveTextContent(
+        new Date(gameWithAllFields.completedAt).toDateString()
+      )
+      expect(table).toHaveTextContent(gameWithAllFields.playtime.toString())
+      expect(table).toHaveTextContent(gameWithAllFields.difficulty)
+      expect(table).toHaveTextContent(gameWithAllFields.completionStats)
 
       expect(richText).toHaveTextContent(text)
     })
@@ -56,7 +65,7 @@ describe('GamePage', () => {
 
   describe('getStaticPaths', () => {
     it('returns the mapped game slugs', async () => {
-      mockGetAllGamesWithSlug.mockResolvedValueOnce([game])
+      mockGetAllGames.mockResolvedValueOnce([game])
       const result = await getStaticPaths({})
 
       expect(result).toEqual({

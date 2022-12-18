@@ -10,7 +10,8 @@ const customJestConfig = {
     './src/**',
     '!./**/_*.tsx',
     '!./src/lib/utils/index.ts',
-    '!./src/lib/contentful/index.ts'
+    '!./src/lib/contentful/index.ts',
+    '!./src/schemas/**/*'
   ],
   coverageThreshold: {
     global: {
