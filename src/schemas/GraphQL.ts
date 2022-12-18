@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { gameSchema } from '../Game'
+import { gameSchema } from './Game'
 
 export const gameCollectionResponseSchema = z.object({
   data: z

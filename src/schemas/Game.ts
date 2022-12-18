@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { documentSchema } from './contentful/RichText'
+import { documentSchema } from './RichText'
 
 const richTextImageLinkSchema = z.object({
   fileName: z.string(),

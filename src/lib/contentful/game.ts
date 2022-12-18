@@ -1,7 +1,7 @@
 import {
   GameCollection,
   gameCollectionResponseSchema
-} from 'src/schemas/contentful/GraphQL'
+} from 'src/schemas/GraphQL'
 import { Game } from 'src/schemas/Game'
 import { query } from './query'
 
