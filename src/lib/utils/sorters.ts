@@ -1,6 +1,6 @@
-import { PartialGame } from '../contentful'
+import { Game } from 'src/schemas/Game'
 
-export type GameSortFn = (a: PartialGame, b: PartialGame) => number
+export type GameSortFn = (a: Game, b: Game) => number
 
 export const sortByPlaytimeDescending: GameSortFn = (a, b) =>
   (b.playtime || 0) - (a.playtime || 0)

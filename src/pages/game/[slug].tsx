@@ -1,7 +1,7 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from 'next'
 import Head from 'next/head'
 import GamePage, { GamePageProps } from 'src/components/Game'
-import { getAllGamesWithSlug, getGameBySlug } from 'src/lib/contentful'
+import { getAllGames, getGameBySlug } from 'src/lib/contentful'
 
 export const getStaticProps: GetStaticProps<GamePageProps> = async ({
   params
@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps<GamePageProps> = async ({
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const allGames = await getAllGamesWithSlug()
+  const allGames = await getAllGames()
   return {
     paths: allGames.map(({ slug }) => `/game/${slug}`),
     fallback: false

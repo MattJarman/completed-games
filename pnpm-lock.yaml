@@ -5,7 +5,7 @@ specifiers:
   '@contentful/rich-text-types': ^15.12.1
   '@faker-js/faker': ^7.6.0
   '@fontsource/nunito': ^4.5.9
-  '@formkit/auto-animate': 1.0.0-beta.1
+  '@formkit/auto-animate': 1.0.0-beta.5
   '@headlessui/react': ^1.6.6
   '@heroicons/react': ^1.0.6
   '@testing-library/dom': ^8.16.0
@@ -45,11 +45,12 @@ specifiers:
   react-is: ^18.2.0
   tailwindcss: ^3.1.2
   typescript: 4.7.3
+  zod: ^3.20.2
 
 dependencies:
   '@contentful/rich-text-react-renderer': 15.12.1_ef5jwxihqo6n7gxfmzogljlgcm
   '@fontsource/nunito': 4.5.9
-  '@formkit/auto-animate': 1.0.0-beta.1_react@18.1.0
+  '@formkit/auto-animate': 1.0.0-beta.5
   '@headlessui/react': 1.6.6_ef5jwxihqo6n7gxfmzogljlgcm
   '@heroicons/react': 1.0.6_react@18.1.0
   class-variance-authority: 0.4.0_typescript@4.7.3
@@ -93,6 +94,7 @@ devDependencies:
   react-is: 18.2.0
   tailwindcss: 3.1.2
   typescript: 4.7.3
+  zod: 3.20.2
 
 packages:
 
@@ -476,18 +478,8 @@ packages:
     resolution: {integrity: sha512-HlCPb5MSCSEx5KhIYsIU6JqlOtvfFnTT2RB0Gcz3Pdht9rkShEYaYKVvlgYQV03+Eom8HUAYQJcDT5gaRbm6AQ==}
     dev: false
 
-  /@formkit/auto-animate/1.0.0-beta.1_react@18.1.0:
-    resolution: {integrity: sha512-I3OWOBaPZKSJL4bsooXI8kC3q7bcgibD2oML0P/Lir6MnbvUe/0/7EH8br024juvM/Ulm9C9xGx9CJUQYrOWSA==}
-    peerDependencies:
-      react: ^16.8.0
-      vue: ^3.0.0
-    peerDependenciesMeta:
-      react:
-        optional: true
-      vue:
-        optional: true
-    dependencies:
-      react: 18.1.0
+  /@formkit/auto-animate/1.0.0-beta.5:
+    resolution: {integrity: sha512-WoSwyhAZPOe6RB/IgicOtCHtrWwEpfKIZ/H/nxpKfnZL9CB6hhhBGU5bCdMRw7YpAUF2CDlQa+WWh+gCqz5lDg==}
     dev: false
 
   /@headlessui/react/1.6.6_ef5jwxihqo6n7gxfmzogljlgcm:
@@ -5434,4 +5426,8 @@ packages:
       string-width: 4.2.3
       y18n: 5.0.8
       yargs-parser: 21.0.1
+    dev: true
+
+  /zod/3.20.2:
+    resolution: {integrity: sha512-1MzNQdAvO+54H+EaK5YpyEy0T+Ejo/7YLHS93G3RnYWh5gaotGHwGeN/ZO687qEDU2y4CdStQYXVHIgrUl5UVQ==}
     dev: true
