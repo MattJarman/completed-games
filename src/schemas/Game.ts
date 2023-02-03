@@ -4,7 +4,7 @@ import { documentSchema } from './RichText'
 const richTextImageLinkSchema = z.object({
   fileName: z.string(),
   title: z.string(),
-  description: z.string(),
+  description: z.string().nullable(),
   url: z.string(),
   width: z.number(),
   height: z.number(),
