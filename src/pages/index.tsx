@@ -6,12 +6,7 @@ import Link from 'next/link'
 import { useMemo, useState } from 'react'
 import FilterControls from 'src/components/filter-controls'
 import { getAllGames } from 'src/lib/contentful'
-import {
-  sortByCompletedAtDescending,
-  sortByNameAscending,
-  sortByPlaytimeDescending,
-  sortByRatingDescending
-} from 'src/lib/utils'
+import { Sorter, sortBy } from 'src/lib/utils/sort'
 import { Game as ContentfulGame } from 'src/schemas/Game'
 
 export type HomeProps = {
@@ -24,17 +19,8 @@ export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   return { props: { allGames } }
 }
 
-const sortMap = new Map([
-  ['completed', sortByCompletedAtDescending],
-  ['playtime', sortByPlaytimeDescending],
-  ['rating', sortByRatingDescending],
-  ['name', sortByNameAscending]
-] as const)
-
-export type SortMapKey = KeyOfMap<typeof sortMap>
-
 const Home: NextPage<HomeProps> = ({ allGames }) => {
-  const [sort, setSort] = useState<SortMapKey>('completed')
+  const [sort, setSort] = useState<Sorter>('completed')
   const [filter, setFilter] = useState('')
   const [parent] = useAutoAnimate<HTMLDivElement>()
 
@@ -68,9 +54,8 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
           ref={parent}
           data-testid="game-container"
           className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-6">
-          {filteredGames
-            .sort(sortMap.get(sort))
-            .map(({ sys, slug, title, image, rating }) => (
+          {sortBy(filteredGames, sort).map(
+            ({ sys, slug, title, image, rating }) => (
               <Link key={sys.id} href={`/game/${slug}`} passHref>
                 <a>
                   <GameCard
@@ -81,7 +66,8 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
                   />
                 </a>
               </Link>
-            ))}
+            )
+          )}
         </div>
       </div>
     </>
