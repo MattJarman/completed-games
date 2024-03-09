@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import TextInput, { TextInputProps } from '@ui/TextInput'
+import TextInput, { TextInputProps } from '@ui/text-input'
 
 describe('TextInput', () => {
   it('renders the input', async () => {

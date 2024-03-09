@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import ContentfulImage from '@ui/ContentfulImage'
+import ContentfulImage from '@ui/contentful-image'
 
 describe('ContentfulImage', () => {
   it('renders the image with the correct props', () => {

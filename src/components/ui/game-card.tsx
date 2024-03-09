@@ -1,4 +1,4 @@
-import ContentfulImage from '@ui/ContentfulImage'
+import ContentfulImage from '@ui/contentful-image'
 import { getRatingColour } from 'src/lib/utils'
 import styles from './GameCard.module.css'
 

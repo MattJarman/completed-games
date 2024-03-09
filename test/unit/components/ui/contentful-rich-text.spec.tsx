@@ -1,9 +1,9 @@
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
 import { render, screen } from '@testing-library/react'
-import ContentfulRichText from '@ui/ContentfulRichText'
-import { GameNotesLinks } from 'src/lib/contentful'
+import ContentfulRichText from '@ui/contentful-rich-text'
+import { GameRichTextLinks } from 'src/schemas/Game'
 
-const links: GameNotesLinks = {
+const links: GameRichTextLinks = {
   assets: {
     block: []
   }
@@ -199,7 +199,7 @@ describe('ContentfulRichText', () => {
         ]
       }
 
-      const links: GameNotesLinks = {
+      const links: GameRichTextLinks = {
         assets: {
           block: []
         }
@@ -273,7 +273,7 @@ describe('ContentfulRichText', () => {
         ]
       }
 
-      const links: GameNotesLinks = {
+      const links: GameRichTextLinks = {
         assets: {
           block: [
             {
@@ -281,8 +281,8 @@ describe('ContentfulRichText', () => {
               title: altText,
               description: 'This is a test',
               url: '/image',
-              width: '400',
-              height: '400',
+              width: 400,
+              height: 400,
               sys: {
                 id
               }

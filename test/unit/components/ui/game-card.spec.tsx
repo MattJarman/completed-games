@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Game from '@ui/GameCard'
+import Game from '@ui/game-card'
 
 describe('GameCard', () => {
   it('renders the game card correctly', () => {

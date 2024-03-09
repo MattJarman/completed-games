@@ -3,7 +3,7 @@ import {
   Options
 } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
-import ContentfulImage from '@ui/ContentfulImage'
+import ContentfulImage from '@ui/contentful-image'
 import { cva, VariantProps } from 'class-variance-authority'
 import { FC } from 'react'
 import { GameRichTextLinks } from 'src/schemas/Game'

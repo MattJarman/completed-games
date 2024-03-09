@@ -1,6 +1,6 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import SelectMenu, { SelectMenuItem } from '@ui/SelectMenu'
+import SelectMenu, { SelectMenuItem } from '@ui/select-menu'
 
 describe('SelectMenu', () => {
   it('renders the select menu', () => {

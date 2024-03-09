@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import RatingCircle from '@ui/RatingCircle'
+import RatingCircle from '@ui/rating-circle'
 
 describe('RatingCircle', () => {
   it('renders the circle with the provided rating', () => {

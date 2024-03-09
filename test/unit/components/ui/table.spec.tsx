@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Table, { TableCell, TableRow } from '@ui/Table'
+import Table, { TableCell, TableRow } from '@ui/table'
 
 describe('Table', () => {
   it('renders the Table correctly', () => {

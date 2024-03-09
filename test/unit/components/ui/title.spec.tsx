@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import Title from '@ui/Title'
+import Title from '@ui/title'
 
 describe('Title', () => {
   it('renders the title correctly', () => {

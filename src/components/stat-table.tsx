@@ -4,7 +4,7 @@ import {
   ClockIcon,
   CogIcon
 } from '@heroicons/react/solid'
-import Table, { TableCell, TableRow } from '@ui/Table'
+import Table, { TableCell, TableRow } from '@ui/table'
 import { Game } from 'src/schemas/Game'
 
 export type StatTableProps<> = {

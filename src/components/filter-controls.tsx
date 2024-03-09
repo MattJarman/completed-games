@@ -5,8 +5,8 @@ import {
   SearchIcon,
   TranslateIcon
 } from '@heroicons/react/solid'
-import SelectMenu, { SelectMenuItem } from '@ui/SelectMenu'
-import TextInput from '@ui/TextInput'
+import SelectMenu, { SelectMenuItem } from '@ui/select-menu'
+import TextInput from '@ui/text-input'
 import { debounce } from 'lodash'
 import { useCallback, useMemo, useState } from 'react'
 import { SortMapKey } from './Home/index'
