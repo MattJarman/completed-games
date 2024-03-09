@@ -1,6 +1,5 @@
 import ContentfulImage from '@ui/contentful-image'
 import { getRatingColour } from 'src/lib/utils'
-import styles from './GameCard.module.css'
 
 type GameCardProps = {
   id: string
@@ -10,7 +9,7 @@ type GameCardProps = {
 }
 
 const GameCard: React.FC<GameCardProps> = ({ id, title, img, rating }) => (
-  <div className={styles.gameCard} data-testid={id}>
+  <div className="game-card" data-testid={id}>
     <ContentfulImage
       src={img}
       alt={title}
