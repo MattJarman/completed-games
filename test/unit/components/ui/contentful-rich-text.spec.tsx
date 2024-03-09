@@ -1,7 +1,7 @@
 import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
 import { render, screen } from '@testing-library/react'
 import ContentfulRichText from '@ui/contentful-rich-text'
-import { GameRichTextLinks } from 'src/schemas/Game'
+import { GameRichTextLinks } from 'src/schemas/game'
 
 const links: GameRichTextLinks = {
   assets: {

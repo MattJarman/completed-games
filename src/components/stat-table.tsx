@@ -5,7 +5,7 @@ import {
   CogIcon
 } from '@heroicons/react/solid'
 import Table, { TableCell, TableRow } from '@ui/table'
-import { Game } from 'src/schemas/Game'
+import { Game } from 'src/schemas/game'
 
 export type StatTableProps<> = {
   completedAt: Game['completedAt']

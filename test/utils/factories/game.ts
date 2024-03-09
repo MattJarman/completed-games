@@ -1,5 +1,5 @@
 import { faker } from '@faker-js/faker'
-import { Game } from 'src/schemas/Game'
+import { Game } from 'src/schemas/game'
 import { makeDocument } from './contentful/document'
 
 export const makeGame = (game?: Partial<Game>): Game => ({

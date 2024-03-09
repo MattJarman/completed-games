@@ -7,7 +7,7 @@ import { useMemo, useState } from 'react'
 import FilterControls from 'src/components/filter-controls'
 import { getAllGames } from 'src/lib/contentful'
 import { Sorter, sortBy } from 'src/lib/utils/sort'
-import { Game as ContentfulGame } from 'src/schemas/Game'
+import { Game as ContentfulGame } from 'src/schemas/game'
 
 export type HomeProps = {
   allGames: ContentfulGame[]

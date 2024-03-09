@@ -1,4 +1,4 @@
-import { Game } from 'src/schemas/Game'
+import { Game } from 'src/schemas/game'
 
 export type GameSortFn = (a: Game, b: Game) => number
 

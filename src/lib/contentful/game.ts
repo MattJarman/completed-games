@@ -1,8 +1,8 @@
 import {
   GameCollection,
   gameCollectionResponseSchema
-} from 'src/schemas/GraphQL'
-import { Game } from 'src/schemas/Game'
+} from 'src/schemas/graphql'
+import { Game } from 'src/schemas/game'
 import { query } from './query'
 
 const PARTIAL_GAME_GRAPHQL_FIELDS = `
