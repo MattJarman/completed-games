@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react'
-import StatTable from 'src/components/Game/StatTable'
+import StatTable from 'src/components/stat-table'
 
 describe('StatTable', () => {
   it('renders the table correctly', () => {

@@ -9,7 +9,7 @@ import SelectMenu, { SelectMenuItem } from '@ui/SelectMenu'
 import TextInput from '@ui/TextInput'
 import { debounce } from 'lodash'
 import { useCallback, useMemo, useState } from 'react'
-import { SortMapKey } from './index'
+import { SortMapKey } from './Home/index'
 
 export type FilterControlsProps = {
   initialSort: SortMapKey

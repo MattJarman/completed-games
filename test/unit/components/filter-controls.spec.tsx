@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import FilterControls from 'src/components/Home/FilterControls'
+import FilterControls from 'src/components/filter-controls'
 
 describe('FilterControls', () => {
   it.each`
