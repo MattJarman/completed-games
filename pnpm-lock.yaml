@@ -23,9 +23,6 @@ dependencies:
   class-variance-authority:
     specifier: ^0.4.0
     version: 0.4.0(typescript@4.7.3)
-  lodash:
-    specifier: ^4.17.21
-    version: 4.17.21
   next:
     specifier: 12.1.6
     version: 12.1.6(@babel/core@7.18.5)(react-dom@18.1.0)(react@18.1.0)
@@ -35,6 +32,9 @@ dependencies:
   react-dom:
     specifier: 18.1.0
     version: 18.1.0(react@18.1.0)
+  remeda:
+    specifier: ^1.47.0
+    version: 1.47.0
 
 devDependencies:
   '@contentful/rich-text-types':
@@ -58,9 +58,6 @@ devDependencies:
   '@types/jest':
     specifier: ^28.1.1
     version: 28.1.1
-  '@types/lodash':
-    specifier: ^4.14.182
-    version: 4.14.182
   '@types/node':
     specifier: 17.0.42
     version: 17.0.42
@@ -1070,10 +1067,6 @@ packages:
 
   /@types/json5@0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
-    dev: true
-
-  /@types/lodash@4.14.182:
-    resolution: {integrity: sha512-/THyiqyQAP9AfARo4pF+aCGcyiQ94tX/Is2I7HofNRqoYLgN1PBoOWu2/zTA5zMxzP5EFutMtWtGAFRKUe961Q==}
     dev: true
 
   /@types/node@17.0.42:
@@ -3677,6 +3670,7 @@ packages:
 
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: true
 
   /loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -4584,6 +4578,10 @@ packages:
     resolution: {integrity: sha512-pq2bWo9mVD43nbts2wGv17XLiNLya+GklZ8kaDLV2Z08gDCsGpnKn9BFMepvWuHCbyVvY7J5o5+BVvoQbmlJLg==}
     engines: {node: '>=8'}
     dev: true
+
+  /remeda@1.47.0:
+    resolution: {integrity: sha512-NhB81y1itYfqF4AYnZW5nq/ukkVtuWrEmmowkkF6MSjSdjiQpYo0khK/h4mNSWjZX50WZHOU5sX80Bd2mw2RRQ==}
+    dev: false
 
   /require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}

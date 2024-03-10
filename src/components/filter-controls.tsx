@@ -7,13 +7,13 @@ import {
 } from "@heroicons/react/solid";
 import SelectMenu, { SelectMenuItem } from "@ui/select-menu";
 import TextInput from "@ui/text-input";
-import { debounce } from "lodash";
 import { useCallback, useMemo, useState } from "react";
-import { SortMapKey } from "./Home/index";
+import * as R from "remeda";
+import { Sorter } from "src/lib/utils";
 
 export type FilterControlsProps = {
-  initialSort: SortMapKey;
-  setSort: (sort: SortMapKey) => void;
+  initialSort: Sorter;
+  setSort: (sort: Sorter) => void;
   setFilter: (filter: string) => void;
 };
 
@@ -32,11 +32,11 @@ const FilterControls: React.FC<FilterControlsProps> = ({
   );
 
   const debouncedChangeHandler = useMemo(
-    () => debounce(changeHandler, 300),
+    () => R.debounce(changeHandler, { waitMs: 300 }).call,
     [changeHandler]
   );
 
-  const handleSortClick = (sort: SortMapKey) => {
+  const handleSortClick = (sort: Sorter) => {
     setSelectedSort(sort);
     setSort(sort);
   };
