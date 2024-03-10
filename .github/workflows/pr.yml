@@ -17,7 +17,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install pnpm
-        uses: pnpm/action-setup@3
+        uses: pnpm/action-setup@v3
         id: pnpm-install
         with:
           version: 8
@@ -39,7 +39,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install pnpm
-        uses: pnpm/action-setup@3
+        uses: pnpm/action-setup@v3
         id: pnpm-install
         with:
           version: 8
@@ -61,7 +61,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install pnpm
-        uses: pnpm/action-setup@3
+        uses: pnpm/action-setup@v3
         id: pnpm-install
         with:
           version: 8
