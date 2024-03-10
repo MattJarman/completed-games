@@ -4,9 +4,6 @@ const nextConfig = {
   images: {
     domains: ['images.ctfassets.net']
   },
-  compiler: {
-    styledComponents: true
-  },
   images: {
     loader: 'custom'
   }
