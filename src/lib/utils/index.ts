@@ -1,3 +1,3 @@
-export * from './classNames'
-export * from './getRatingColour'
-export * from './sorters'
+export * from "./class-names";
+export * from "./rating";
+export * from "./sort";

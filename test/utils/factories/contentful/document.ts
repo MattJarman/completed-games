@@ -1,5 +1,5 @@
-import { BLOCKS, Document } from '@contentful/rich-text-types'
-import { faker } from '@faker-js/faker'
+import { BLOCKS, Document } from "@contentful/rich-text-types";
+import { faker } from "@faker-js/faker";
 
 export const makeDocument = (text?: string): Document => ({
   nodeType: BLOCKS.DOCUMENT,
@@ -10,12 +10,12 @@ export const makeDocument = (text?: string): Document => ({
       data: {},
       content: [
         {
-          nodeType: 'text',
+          nodeType: "text",
           value: text || faker.lorem.paragraph(),
           marks: [],
-          data: {}
-        }
-      ]
-    }
-  ]
-})
+          data: {},
+        },
+      ],
+    },
+  ],
+});
