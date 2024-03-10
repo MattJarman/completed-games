@@ -17,10 +17,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
+        uses: pnpm/action-setup@3
         id: pnpm-install
         with:
-          version: 7
+          version: 8
           run_install: false
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -39,10 +39,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
+        uses: pnpm/action-setup@3
         id: pnpm-install
         with:
-          version: 7
+          version: 8
           run_install: false
       - name: Install Node.js
         uses: actions/setup-node@v3
@@ -61,10 +61,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.4
+        uses: pnpm/action-setup@3
         id: pnpm-install
         with:
-          version: 7
+          version: 8
           run_install: false
       - name: Install Node.js
         uses: actions/setup-node@v3
