@@ -1,45 +1,45 @@
 import {
   documentToReactComponents,
-  Options
-} from '@contentful/rich-text-react-renderer'
-import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
-import ContentfulImage from '@ui/contentful-image'
-import { cva, VariantProps } from 'class-variance-authority'
-import { FC } from 'react'
-import { GameRichTextLinks } from 'src/schemas/game'
+  Options,
+} from "@contentful/rich-text-react-renderer";
+import { BLOCKS, Document, INLINES } from "@contentful/rich-text-types";
+import ContentfulImage from "@ui/contentful-image";
+import { cva, VariantProps } from "class-variance-authority";
+import { FC } from "react";
+import { GameRichTextLinks } from "src/schemas/game";
 
-const richTextStyles = cva('flex flex-col space-y-2', {
+const richTextStyles = cva("flex flex-col space-y-2", {
   variants: {
     intent: {
-      primary: 'text-white'
+      primary: "text-white",
     },
     textSize: {
-      base: 'text-base',
-      lg: 'text-lg'
-    }
+      base: "text-base",
+      lg: "text-lg",
+    },
   },
   defaultVariants: {
-    intent: 'primary',
-    textSize: 'base'
-  }
-})
+    intent: "primary",
+    textSize: "base",
+  },
+});
 
 export type ContentfulRichTextProps = VariantProps<typeof richTextStyles> & {
-  document: Document
-  links: GameRichTextLinks
-}
+  document: Document;
+  links: GameRichTextLinks;
+};
 
 const renderOptions = (links: GameRichTextLinks): Options => {
-  const assetMap = new Map()
+  const assetMap = new Map();
 
   for (const asset of links.assets.block) {
-    assetMap.set(asset.sys.id, asset)
+    assetMap.set(asset.sys.id, asset);
   }
 
   return {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node) => {
-        const asset = assetMap.get(node.data.target.sys.id)
+        const asset = assetMap.get(node.data.target.sys.id);
 
         return (
           <div className="md:m-auto md:w-3/4">
@@ -52,7 +52,7 @@ const renderOptions = (links: GameRichTextLinks): Options => {
               height={asset.height}
             />
           </div>
-        )
+        );
       },
       [BLOCKS.TABLE]: (_, children) => (
         <div className="relative overflow-x-auto rounded-sm shadow-md sm:rounded-md">
@@ -97,7 +97,8 @@ const renderOptions = (links: GameRichTextLinks): Options => {
           className="text-sky-500 hover:text-sky-700"
           href={data.uri}
           target="_blank"
-          rel="noopener noreferrer">
+          rel="noopener noreferrer"
+        >
           {children}
         </a>
       ),
@@ -112,23 +113,23 @@ const renderOptions = (links: GameRichTextLinks): Options => {
           <div className="pl-4">{children}</div>
         </blockquote>
       ),
-      [BLOCKS.HR]: () => <hr className="border-1 border-sky-500" />
-    }
-  }
-}
+      [BLOCKS.HR]: () => <hr className="border-1 border-sky-500" />,
+    },
+  };
+};
 
 const ContentfulRichText: FC<ContentfulRichTextProps> = ({
   document,
   links,
   ...props
 }) => {
-  const component = documentToReactComponents(document, renderOptions(links))
+  const component = documentToReactComponents(document, renderOptions(links));
 
   return (
     <div data-testid="rich-text" className={richTextStyles(props)}>
       {component}
     </div>
-  )
-}
+  );
+};
 
-export default ContentfulRichText
+export default ContentfulRichText;

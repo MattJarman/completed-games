@@ -1,8 +1,8 @@
-import { ComponentProps, FC } from 'react'
+import { ComponentProps, FC } from "react";
 
-export type TextInputProps = ComponentProps<'input'> & {
-  Icon: FC<ComponentProps<'svg'>>
-}
+export type TextInputProps = ComponentProps<"input"> & {
+  Icon: FC<ComponentProps<"svg">>;
+};
 
 const TextInput: FC<TextInputProps> = ({ Icon, ...props }) => (
   <div className="bg-gray-800 rounded-md">
@@ -18,6 +18,6 @@ const TextInput: FC<TextInputProps> = ({ Icon, ...props }) => (
       />
     </div>
   </div>
-)
+);
 
-export default TextInput
+export default TextInput;

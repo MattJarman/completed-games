@@ -1,16 +1,16 @@
-import { render, screen } from '@testing-library/react'
-import Tag from '@ui/tag'
+import { render, screen } from "@testing-library/react";
+import Tag from "@ui/tag";
 
-describe('Tag', () => {
-  it('renders the tag correctly', () => {
+describe("Tag", () => {
+  it("renders the tag correctly", () => {
     render(
       <Tag>
         <p data-testid="text"></p>
       </Tag>
-    )
+    );
 
-    const text = screen.getByTestId('text')
+    const text = screen.getByTestId("text");
 
-    expect(text).toBeInTheDocument()
-  })
-})
+    expect(text).toBeInTheDocument();
+  });
+});

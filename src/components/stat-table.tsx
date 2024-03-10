@@ -2,46 +2,46 @@ import {
   CalendarIcon,
   ChartBarIcon,
   ClockIcon,
-  CogIcon
-} from '@heroicons/react/solid'
-import Table, { TableCell, TableRow } from '@ui/table'
-import { Game } from 'src/schemas/game'
+  CogIcon,
+} from "@heroicons/react/solid";
+import Table, { TableCell, TableRow } from "@ui/table";
+import { Game } from "src/schemas/game";
 
 export type StatTableProps<> = {
-  completedAt: Game['completedAt']
-  playtime?: Game['playtime']
-  difficulty?: Game['difficulty']
-  completionStats?: Game['completionStats']
-}
+  completedAt: Game["completedAt"];
+  playtime?: Game["playtime"];
+  difficulty?: Game["difficulty"];
+  completionStats?: Game["completionStats"];
+};
 
 const StatTable: React.FC<StatTableProps> = ({
   completedAt,
   playtime,
   difficulty,
-  completionStats
+  completionStats,
 }) => {
   const rows = [
     {
-      name: 'Completed',
+      name: "Completed",
       value: new Date(completedAt).toDateString(),
-      Icon: CalendarIcon
+      Icon: CalendarIcon,
     },
     {
-      name: 'Playtime',
+      name: "Playtime",
       value: `${playtime ?? 0} hrs`,
-      Icon: ClockIcon
+      Icon: ClockIcon,
     },
     {
-      name: 'Difficulty',
-      value: difficulty || '?',
-      Icon: CogIcon
+      name: "Difficulty",
+      value: difficulty || "?",
+      Icon: CogIcon,
     },
     {
-      name: 'Completion Stats',
-      value: completionStats || '?',
-      Icon: ChartBarIcon
-    }
-  ]
+      name: "Completion Stats",
+      value: completionStats || "?",
+      Icon: ChartBarIcon,
+    },
+  ];
 
   return (
     <Table>
@@ -57,7 +57,7 @@ const StatTable: React.FC<StatTableProps> = ({
         </TableRow>
       ))}
     </Table>
-  )
-}
+  );
+};
 
-export default StatTable
+export default StatTable;

@@ -1,16 +1,16 @@
-import { BLOCKS, Document, INLINES } from '@contentful/rich-text-types'
-import { render, screen } from '@testing-library/react'
-import ContentfulRichText from '@ui/contentful-rich-text'
-import { GameRichTextLinks } from 'src/schemas/game'
+import { BLOCKS, Document, INLINES } from "@contentful/rich-text-types";
+import { render, screen } from "@testing-library/react";
+import ContentfulRichText from "@ui/contentful-rich-text";
+import { GameRichTextLinks } from "src/schemas/game";
 
 const links: GameRichTextLinks = {
   assets: {
-    block: []
-  }
-}
+    block: [],
+  },
+};
 
-describe('ContentfulRichText', () => {
-  describe('headings', () => {
+describe("ContentfulRichText", () => {
+  describe("headings", () => {
     it.each`
       block               | headingLevel
       ${BLOCKS.HEADING_1} | ${1}
@@ -20,7 +20,7 @@ describe('ContentfulRichText', () => {
       ${BLOCKS.HEADING_5} | ${5}
       ${BLOCKS.HEADING_6} | ${6}
     `(
-      'renders a heading with a level of $headingLevel for a block of $block',
+      "renders a heading with a level of $headingLevel for a block of $block",
       ({ block, headingLevel }) => {
         const document: Document = {
           nodeType: BLOCKS.DOCUMENT,
@@ -30,22 +30,22 @@ describe('ContentfulRichText', () => {
               nodeType: block,
               data: {},
               content: [
-                { nodeType: 'text', value: 'test', marks: [], data: {} }
-              ]
-            }
-          ]
-        }
+                { nodeType: "text", value: "test", marks: [], data: {} },
+              ],
+            },
+          ],
+        };
 
-        render(<ContentfulRichText document={document} links={links} />)
+        render(<ContentfulRichText document={document} links={links} />);
 
-        const heading = screen.getByRole('heading', { level: headingLevel })
-        expect(heading).toBeInTheDocument()
+        const heading = screen.getByRole("heading", { level: headingLevel });
+        expect(heading).toBeInTheDocument();
       }
-    )
-  })
+    );
+  });
 
-  describe('table', () => {
-    it('renders the table', () => {
+  describe("table", () => {
+    it("renders the table", () => {
       const document: Document = {
         nodeType: BLOCKS.DOCUMENT,
         data: {},
@@ -61,9 +61,9 @@ describe('ContentfulRichText', () => {
                   {
                     nodeType: BLOCKS.TABLE_HEADER_CELL,
                     data: {},
-                    content: []
-                  }
-                ]
+                    content: [],
+                  },
+                ],
               },
               {
                 nodeType: BLOCKS.TABLE_ROW,
@@ -72,33 +72,33 @@ describe('ContentfulRichText', () => {
                   {
                     nodeType: BLOCKS.TABLE_CELL,
                     data: {},
-                    content: []
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    content: [],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
 
-      render(<ContentfulRichText document={document} links={links} />)
+      render(<ContentfulRichText document={document} links={links} />);
 
-      const table = screen.getByRole('table')
-      const cell = screen.getByRole('cell')
-      const header = screen.getByRole('columnheader')
-      const rows = screen.getAllByRole('row')
+      const table = screen.getByRole("table");
+      const cell = screen.getByRole("cell");
+      const header = screen.getByRole("columnheader");
+      const rows = screen.getAllByRole("row");
 
-      expect(table).toBeInTheDocument()
-      expect(cell).toBeInTheDocument()
-      expect(header).toBeInTheDocument()
-      expect(rows.length).toEqual(2)
-    })
-  })
+      expect(table).toBeInTheDocument();
+      expect(cell).toBeInTheDocument();
+      expect(header).toBeInTheDocument();
+      expect(rows.length).toEqual(2);
+    });
+  });
 
-  describe('hyperlink', () => {
-    it('renders the link', () => {
-      const uri = '/test'
-      const text = 'test'
+  describe("hyperlink", () => {
+    it("renders the link", () => {
+      const uri = "/test";
+      const text = "test";
       const document: Document = {
         nodeType: BLOCKS.DOCUMENT,
         data: {},
@@ -110,39 +110,39 @@ describe('ContentfulRichText', () => {
               {
                 nodeType: INLINES.HYPERLINK,
                 data: {
-                  uri
+                  uri,
                 },
                 content: [
                   {
-                    nodeType: 'text',
+                    nodeType: "text",
                     value: text,
                     marks: [],
-                    data: {}
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    data: {},
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
 
-      render(<ContentfulRichText document={document} links={links} />)
+      render(<ContentfulRichText document={document} links={links} />);
 
-      const link = screen.getByRole('link')
+      const link = screen.getByRole("link");
 
-      expect(link).toBeInTheDocument()
-      expect(link).toHaveAttribute('href', uri)
-      expect(link).toHaveTextContent(text)
-    })
-  })
+      expect(link).toBeInTheDocument();
+      expect(link).toHaveAttribute("href", uri);
+      expect(link).toHaveTextContent(text);
+    });
+  });
 
-  describe('lists', () => {
+  describe("lists", () => {
     it.each`
       listType | listBlock
-      ${'ul'}  | ${BLOCKS.UL_LIST}
-      ${'ol'}  | ${BLOCKS.OL_LIST}
-    `('renders the $listType list', ({ listBlock }) => {
-      const text = 'item-1'
+      ${"ul"}  | ${BLOCKS.UL_LIST}
+      ${"ol"}  | ${BLOCKS.OL_LIST}
+    `("renders the $listType list", ({ listBlock }) => {
+      const text = "item-1";
       const document: Document = {
         nodeType: BLOCKS.DOCUMENT,
         data: {},
@@ -160,33 +160,33 @@ describe('ContentfulRichText', () => {
                     data: {},
                     content: [
                       {
-                        nodeType: 'text',
+                        nodeType: "text",
                         value: text,
                         marks: [],
-                        data: {}
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                        data: {},
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
 
-      render(<ContentfulRichText document={document} links={links} />)
+      render(<ContentfulRichText document={document} links={links} />);
 
-      const list = screen.getByRole('list')
-      const listItem = screen.getByRole('listitem')
+      const list = screen.getByRole("list");
+      const listItem = screen.getByRole("listitem");
 
-      expect(list).toBeInTheDocument()
-      expect(listItem).toBeInTheDocument()
-      expect(listItem).toHaveTextContent(text)
-    })
-  })
+      expect(list).toBeInTheDocument();
+      expect(listItem).toBeInTheDocument();
+      expect(listItem).toHaveTextContent(text);
+    });
+  });
 
-  describe('separator', () => {
-    it('renders the hr', () => {
+  describe("separator", () => {
+    it("renders the hr", () => {
       const document: Document = {
         nodeType: BLOCKS.DOCUMENT,
         data: {},
@@ -194,28 +194,28 @@ describe('ContentfulRichText', () => {
           {
             nodeType: BLOCKS.HR,
             data: {},
-            content: []
-          }
-        ]
-      }
+            content: [],
+          },
+        ],
+      };
 
       const links: GameRichTextLinks = {
         assets: {
-          block: []
-        }
-      }
+          block: [],
+        },
+      };
 
-      render(<ContentfulRichText document={document} links={links} />)
+      render(<ContentfulRichText document={document} links={links} />);
 
-      const hr = screen.getByRole('separator')
+      const hr = screen.getByRole("separator");
 
-      expect(hr).toBeInTheDocument()
-    })
-  })
+      expect(hr).toBeInTheDocument();
+    });
+  });
 
-  describe('block quote', () => {
-    it('renders the block quote', () => {
-      const text = 'I came, I saw, I conquered.'
+  describe("block quote", () => {
+    it("renders the block quote", () => {
+      const text = "I came, I saw, I conquered.";
       const document: Document = {
         nodeType: BLOCKS.DOCUMENT,
         data: {},
@@ -229,30 +229,30 @@ describe('ContentfulRichText', () => {
                 data: {},
                 content: [
                   {
-                    nodeType: 'text',
+                    nodeType: "text",
                     value: text,
                     marks: [],
-                    data: {}
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      }
+                    data: {},
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      };
 
-      render(<ContentfulRichText document={document} links={links} />)
+      render(<ContentfulRichText document={document} links={links} />);
 
-      const quote = screen.getByText(text)
+      const quote = screen.getByText(text);
 
-      expect(quote).toBeInTheDocument()
-    })
-  })
+      expect(quote).toBeInTheDocument();
+    });
+  });
 
-  describe('embedded asset', () => {
-    it('renders the emedded asset', () => {
-      const id = '2hrNH4dLZUqRVNGQuvUTHE'
-      const altText = 'Test'
+  describe("embedded asset", () => {
+    it("renders the emedded asset", () => {
+      const id = "2hrNH4dLZUqRVNGQuvUTHE";
+      const altText = "Test";
       const document: Document = {
         nodeType: BLOCKS.DOCUMENT,
         data: {},
@@ -263,39 +263,39 @@ describe('ContentfulRichText', () => {
               target: {
                 sys: {
                   id,
-                  type: 'Link',
-                  linkType: 'Asset'
-                }
-              }
+                  type: "Link",
+                  linkType: "Asset",
+                },
+              },
             },
-            content: []
-          }
-        ]
-      }
+            content: [],
+          },
+        ],
+      };
 
       const links: GameRichTextLinks = {
         assets: {
           block: [
             {
-              fileName: 'test',
+              fileName: "test",
               title: altText,
-              description: 'This is a test',
-              url: '/image',
+              description: "This is a test",
+              url: "/image",
               width: 400,
               height: 400,
               sys: {
-                id
-              }
-            }
-          ]
-        }
-      }
+                id,
+              },
+            },
+          ],
+        },
+      };
 
-      render(<ContentfulRichText document={document} links={links} />)
+      render(<ContentfulRichText document={document} links={links} />);
 
-      const image = screen.getByAltText(altText)
+      const image = screen.getByAltText(altText);
 
-      expect(image).toBeInTheDocument()
-    })
-  })
-})
+      expect(image).toBeInTheDocument();
+    });
+  });
+});

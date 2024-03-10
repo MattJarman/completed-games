@@ -1,13 +1,13 @@
-import { render, screen } from '@testing-library/react'
-import Title from '@ui/title'
+import { render, screen } from "@testing-library/react";
+import Title from "@ui/title";
 
-describe('Title', () => {
-  it('renders the title correctly', () => {
-    const title = 'title'
-    render(<Title>{title}</Title>)
+describe("Title", () => {
+  it("renders the title correctly", () => {
+    const title = "title";
+    render(<Title>{title}</Title>);
 
-    const text = screen.getByText(title)
+    const text = screen.getByText(title);
 
-    expect(text).toBeInTheDocument()
-  })
-})
+    expect(text).toBeInTheDocument();
+  });
+});

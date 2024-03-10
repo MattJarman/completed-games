@@ -1,6 +1,6 @@
-import { faker } from '@faker-js/faker'
-import { Game } from 'src/schemas/game'
-import { makeDocument } from './contentful/document'
+import { faker } from "@faker-js/faker";
+import { Game } from "src/schemas/game";
+import { makeDocument } from "./contentful/document";
 
 export const makeGame = (game?: Partial<Game>): Game => ({
   slug: faker.lorem.slug(),
@@ -8,11 +8,11 @@ export const makeGame = (game?: Partial<Game>): Game => ({
   rating: faker.datatype.number({ min: 0, max: 100 }),
   completedAt: faker.datatype.datetime().toDateString(),
   sys: {
-    id: faker.datatype.uuid()
+    id: faker.datatype.uuid(),
   },
   image: {
     title: faker.lorem.text(),
-    url: faker.image.imageUrl()
+    url: faker.image.imageUrl(),
   },
   playtime: faker.datatype.number({ min: 1, max: 1000 }),
   tags: Array.from(
@@ -32,15 +32,15 @@ export const makeGame = (game?: Partial<Game>): Game => ({
             width: faker.datatype.number({ min: 100, max: 600 }),
             height: faker.datatype.number({ min: 100, max: 600 }),
             sys: {
-              id: faker.datatype.uuid()
-            }
-          }
-        ]
-      }
+              id: faker.datatype.uuid(),
+            },
+          },
+        ],
+      },
     },
-    ...game?.notes
+    ...game?.notes,
   },
   completionStats: faker.lorem.sentence(),
-  difficulty: faker.helpers.arrayElement(['Easy', 'Normal', 'Hard']),
-  ...game
-})
+  difficulty: faker.helpers.arrayElement(["Easy", "Normal", "Hard"]),
+  ...game,
+});

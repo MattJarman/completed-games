@@ -1,12 +1,12 @@
-import ContentfulImage from '@ui/contentful-image'
-import { getRatingColour } from 'src/lib/utils'
+import ContentfulImage from "@ui/contentful-image";
+import { getRatingColour } from "src/lib/utils";
 
 type GameCardProps = {
-  id: string
-  title: string
-  img: string
-  rating: number
-}
+  id: string;
+  title: string;
+  img: string;
+  rating: number;
+};
 
 const GameCard: React.FC<GameCardProps> = ({ id, title, img, rating }) => (
   <div className="game-card" data-testid={id}>
@@ -26,11 +26,12 @@ const GameCard: React.FC<GameCardProps> = ({ id, title, img, rating }) => (
     <div className="relative bottom-0 flex items-center justify-center w-full">
       <span
         className="absolute z-40 px-2 font-bold rounded-sm -bottom-2"
-        style={{ background: getRatingColour(rating) }}>
+        style={{ background: getRatingColour(rating) }}
+      >
         {rating}
       </span>
     </div>
   </div>
-)
+);
 
-export default GameCard
+export default GameCard;

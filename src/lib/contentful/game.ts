@@ -1,9 +1,9 @@
 import {
   GameCollection,
-  gameCollectionResponseSchema
-} from 'src/schemas/graphql'
-import { Game } from 'src/schemas/game'
-import { query } from './query'
+  gameCollectionResponseSchema,
+} from "src/schemas/graphql";
+import { Game } from "src/schemas/game";
+import { query } from "./query";
 
 const PARTIAL_GAME_GRAPHQL_FIELDS = `
 slug
@@ -20,12 +20,12 @@ image {
 playtime
 tags 
 completionStats
-difficulty`
+difficulty`;
 
 const extractGameEntries = (entries: GameCollection) =>
-  entries?.data?.gameCollection?.items || []
+  entries?.data?.gameCollection?.items || [];
 
-const extractGame = (entries: GameCollection) => extractGameEntries(entries)[0]
+const extractGame = (entries: GameCollection) => extractGameEntries(entries)[0];
 
 export const getAllGames = async (): Promise<Game[]> => {
   const entries = await query(
@@ -37,10 +37,10 @@ export const getAllGames = async (): Promise<Game[]> => {
         }
       }`,
     gameCollectionResponseSchema
-  )
+  );
 
-  return extractGameEntries(entries)
-}
+  return extractGameEntries(entries);
+};
 
 export const getGameBySlug = async (
   slug: string
@@ -72,7 +72,7 @@ export const getGameBySlug = async (
         }
       }`,
     gameCollectionResponseSchema
-  )
+  );
 
-  return extractGame(entries)
-}
+  return extractGame(entries);
+};
