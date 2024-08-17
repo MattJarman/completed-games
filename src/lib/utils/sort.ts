@@ -1,4 +1,5 @@
 import { Game } from "src/schemas/game";
+import { Sort } from "src/schemas/sort";
 
 export type GameSortFn = (a: Game, b: Game) => number;
 
@@ -13,14 +14,11 @@ const sortByNameAscending: GameSortFn = (a, b) =>
 const sortByCompletedAtDescending: GameSortFn = (a, b) =>
   new Date(b.completedAt).getTime() - new Date(a.completedAt).getTime();
 
-const sorters = {
+const sorters: { [key in Sort]: GameSortFn } = {
   completed: sortByCompletedAtDescending,
   playtime: sortByPlaytimeDescending,
   rating: sortByRatingDescending,
   name: sortByNameAscending,
-} as const;
+};
 
-export type Sorter = keyof typeof sorters;
-
-export const sortBy = (games: Array<Game>, by: Sorter) =>
-  games.sort(sorters[by]);
+export const sortBy = (games: Array<Game>, by: Sort) => games.sort(sorters[by]);
