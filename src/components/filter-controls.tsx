@@ -7,38 +7,36 @@ import {
 } from "@heroicons/react/solid";
 import SelectMenu, { SelectMenuItem } from "@ui/select-menu";
 import TextInput from "@ui/text-input";
-import { useCallback, useMemo, useState } from "react";
-import * as R from "remeda";
-import { Sorter } from "src/lib/utils";
+import { ChangeEvent, useState } from "react";
+import { Sort } from "src/schemas/sort";
 
 export type FilterControlsProps = {
-  initialSort: Sorter;
-  setSort: (sort: Sorter) => void;
-  setFilter: (filter: string) => void;
+  initialSort?: Sort;
+  initialSearch?: string;
+  onSortChange: (sort: Sort) => void;
+  onSearchChange: (search: string) => void;
 };
 
 const FilterControls: React.FC<FilterControlsProps> = ({
   initialSort,
-  setFilter,
-  setSort,
+  initialSearch,
+  onSortChange,
+  onSearchChange,
 }) => {
-  const [selectedSort, setSelectedSort] = useState(initialSort);
+  const [currentSort, setCurrentSort] = useState<Sort>();
+  const [currentSearch, setCurrentSearch] = useState<string>();
+  const sort = typeof currentSort !== "undefined" ? currentSort : initialSort;
+  const search =
+    typeof currentSearch !== "undefined" ? currentSearch : initialSearch;
 
-  const changeHandler = useCallback(
-    (event: React.ChangeEvent<HTMLInputElement>) => {
-      setFilter(event.target.value);
-    },
-    [setFilter]
-  );
+  const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setCurrentSearch(event.target.value);
+    onSearchChange(event.target.value);
+  };
 
-  const debouncedChangeHandler = useMemo(
-    () => R.debounce(changeHandler, { waitMs: 300 }).call,
-    [changeHandler]
-  );
-
-  const handleSortClick = (sort: Sorter) => {
-    setSelectedSort(sort);
-    setSort(sort);
+  const handleSortClick = (sort: Sort) => {
+    setCurrentSort(sort);
+    onSortChange(sort);
   };
 
   return (
@@ -48,14 +46,15 @@ const FilterControls: React.FC<FilterControlsProps> = ({
         id="game"
         name="filter"
         placeholder="Search"
-        onChange={debouncedChangeHandler}
+        value={search}
+        onChange={handleSearchChange}
         Icon={SearchIcon}
       />
       <div className="flex justify-end">
         <SelectMenu text="Sort">
           <SelectMenuItem
             onClick={() => handleSortClick("completed")}
-            selected={selectedSort === "completed"}
+            selected={sort === "completed"}
           >
             <span className="flex items-center flex-grow">
               <CalendarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -64,7 +63,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
           </SelectMenuItem>
           <SelectMenuItem
             onClick={() => handleSortClick("playtime")}
-            selected={selectedSort === "playtime"}
+            selected={sort === "playtime"}
           >
             <span className="flex items-center flex-grow">
               <ClockIcon className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -73,7 +72,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
           </SelectMenuItem>
           <SelectMenuItem
             onClick={() => handleSortClick("rating")}
-            selected={selectedSort === "rating"}
+            selected={sort === "rating"}
           >
             <span className="flex items-center flex-grow">
               <ChartBarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -82,7 +81,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
           </SelectMenuItem>
           <SelectMenuItem
             onClick={() => handleSortClick("name")}
-            selected={selectedSort === "name"}
+            selected={sort === "name"}
           >
             <span className="flex items-center flex-grow">
               <TranslateIcon className="w-5 h-5 mr-2" aria-hidden="true" />

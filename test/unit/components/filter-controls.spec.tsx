@@ -17,9 +17,9 @@ describe("FilterControls", () => {
 
       render(
         <FilterControls
-          initialSort={"completed"}
-          setSort={setSort}
-          setFilter={jest.fn()}
+          initialSort="completed"
+          onSortChange={setSort}
+          onSearchChange={jest.fn()}
         />
       );
 
