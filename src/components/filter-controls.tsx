@@ -7,35 +7,27 @@ import {
 } from "@heroicons/react/solid";
 import SelectMenu, { SelectMenuItem } from "@ui/select-menu";
 import TextInput from "@ui/text-input";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent } from "react";
 import { Sort } from "src/schemas/sort";
 
 export type FilterControlsProps = {
-  initialSort?: Sort;
-  initialSearch?: string;
+  sort?: Sort;
+  search?: string;
   onSortChange: (sort: Sort) => void;
   onSearchChange: (search: string) => void;
 };
 
 const FilterControls: React.FC<FilterControlsProps> = ({
-  initialSort,
-  initialSearch,
+  sort,
+  search,
   onSortChange,
   onSearchChange,
 }) => {
-  const [currentSort, setCurrentSort] = useState<Sort>();
-  const [currentSearch, setCurrentSearch] = useState<string>();
-  const sort = typeof currentSort !== "undefined" ? currentSort : initialSort;
-  const search =
-    typeof currentSearch !== "undefined" ? currentSearch : initialSearch;
-
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setCurrentSearch(event.target.value);
     onSearchChange(event.target.value);
   };
 
   const handleSortClick = (sort: Sort) => {
-    setCurrentSort(sort);
     onSortChange(sort);
   };
 

@@ -6,7 +6,7 @@ import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import StatTable from "src/components/stat-table";
 import { getAllGames, getGameBySlug } from "src/lib/contentful";
-import { Game } from "src/schemas/game";
+import type { Game } from "src/schemas/game";
 
 export type GamePageProps = {
   game: Game;
