@@ -2,11 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['images.ctfassets.net']
+    domains: ["images.ctfassets.net"],
   },
   images: {
-    loader: 'custom'
-  }
-}
+    loader: "custom",
+  },
+  output: "export",
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

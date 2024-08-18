@@ -47,7 +47,6 @@ const renderOptions = (links: GameRichTextLinks): Options => {
               className="rounded-md"
               src={asset.url}
               alt={asset.title}
-              layout="responsive"
               width={asset.width}
               height={asset.height}
             />

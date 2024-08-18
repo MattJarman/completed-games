@@ -16,7 +16,6 @@ const GameCard: React.FC<GameCardProps> = ({ id, title, img, rating }) => (
       quality={75}
       placeholder="blur"
       blurDataURL={`${img}?w=100&q=5&fm=jpg&fl=progressive`}
-      layout="responsive"
       sizes="(max-width: 768px) 50vw,
         (max-width: 1200px) 30vw,
         20vw"
