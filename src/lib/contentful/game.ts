@@ -1,9 +1,11 @@
+import { Game } from "src/schemas/game";
 import {
   GameCollection,
   gameCollectionResponseSchema,
 } from "src/schemas/graphql";
-import { Game } from "src/schemas/game";
 import { query } from "./query";
+
+const LIMIT = 1000;
 
 const PARTIAL_GAME_GRAPHQL_FIELDS = `
 slug
@@ -30,7 +32,7 @@ const extractGame = (entries: GameCollection) => extractGameEntries(entries)[0];
 export const getAllGames = async (): Promise<Game[]> => {
   const entries = await query(
     `query {
-        gameCollection(order: completedAt_DESC) {
+        gameCollection(order: completedAt_DESC, limit: ${LIMIT}) {
           items {
             ${PARTIAL_GAME_GRAPHQL_FIELDS}
           }
