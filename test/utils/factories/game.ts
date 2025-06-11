@@ -41,6 +41,7 @@ export const makeGame = (game?: Partial<Game>): Game => ({
     ...game?.notes,
   },
   completionStats: faker.lorem.sentence(),
+  allAchievements: faker.datatype.boolean(),
   difficulty: faker.helpers.arrayElement(["Easy", "Normal", "Hard"]),
   ...game,
 });

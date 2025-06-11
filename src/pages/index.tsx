@@ -33,6 +33,7 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
       "playtime",
       "rating",
       "name",
+      "achievements",
     ] as const).withDefault("completed")
   );
 
@@ -69,13 +70,14 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
           className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 md:gap-6"
         >
           {sortBy(filteredGames, sort).map(
-            ({ sys, slug, title, image, rating }) => (
+            ({ sys, slug, title, image, rating, allAchievements }) => (
               <Link key={sys.id} href={`/game/${slug}`} passHref>
                 <GameCard
                   id={sys.id}
                   title={title}
                   img={image.url}
                   rating={rating}
+                  allAchievements={Boolean(allAchievements)}
                 />
               </Link>
             )

@@ -3,7 +3,7 @@ import {
   ChartBarIcon,
   ClockIcon,
   CogIcon,
-} from "@heroicons/react/solid";
+} from "@heroicons/react/24/solid";
 import Table, { TableCell, TableRow } from "@ui/table";
 import { Game } from "src/schemas/game";
 
