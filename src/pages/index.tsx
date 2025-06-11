@@ -76,7 +76,7 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
                   title={title}
                   img={image.url}
                   rating={rating}
-                  allAchievements={allAchievements}
+                  allAchievements={Boolean(allAchievements)}
                 />
               </Link>
             )
