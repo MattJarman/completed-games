@@ -22,6 +22,7 @@ image {
 playtime
 tags 
 completionStats
+allAchievements
 difficulty`;
 
 const extractGameEntries = (entries: GameCollection) =>

@@ -41,6 +41,7 @@ export const gameSchema = z.object({
     .nullable()
     .optional(),
   completionStats: z.string().nullable(),
+  allAchievements: z.boolean().nullable(),
   difficulty: z.string().nullable(),
 });
 

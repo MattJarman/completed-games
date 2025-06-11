@@ -4,6 +4,7 @@ import Tag from "@ui/tag";
 import Title from "@ui/title";
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
+import { AchievementIcon } from "src/components/icons";
 import StatTable from "src/components/stat-table";
 import { getAllGames, getGameBySlug } from "src/lib/contentful";
 import type { Game } from "src/schemas/game";
@@ -55,6 +56,7 @@ const Game: NextPage<GamePageProps> = ({ game }) => (
         data-testid="game-tags"
         className="flex flex-col items-start space-y-2 md:items-center md:space-x-2 md:space-y-0 md:flex-row"
       >
+        {game.allAchievements && <AchievementIcon className="w-10" />}
         {game.tags.map((tag) => (
           <Tag key={tag.toLowerCase()}>{tag}</Tag>
         ))}
