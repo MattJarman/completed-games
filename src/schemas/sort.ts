@@ -5,6 +5,7 @@ export const sortSchema = z.union([
   z.literal("playtime"),
   z.literal("rating"),
   z.literal("name"),
+  z.literal("achievements"),
 ]);
 
 export type Sort = z.infer<typeof sortSchema>;

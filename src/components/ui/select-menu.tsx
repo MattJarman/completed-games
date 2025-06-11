@@ -1,5 +1,5 @@
 import { Menu, Transition } from "@headlessui/react";
-import { CheckIcon, ChevronDownIcon } from "@heroicons/react/solid";
+import { CheckIcon, ChevronDownIcon } from "@heroicons/react/24/solid";
 import type { ComponentProps, FC, PropsWithChildren } from "react";
 import { Fragment } from "react";
 import { classNames } from "src/lib/utils";

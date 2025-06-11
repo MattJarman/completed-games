@@ -2,9 +2,10 @@ import {
   CalendarIcon,
   ChartBarIcon,
   ClockIcon,
-  SearchIcon,
-  TranslateIcon,
-} from "@heroicons/react/solid";
+  MagnifyingGlassIcon,
+  LanguageIcon,
+  StarIcon,
+} from "@heroicons/react/24/solid";
 import SelectMenu, { SelectMenuItem } from "@ui/select-menu";
 import TextInput from "@ui/text-input";
 import { ChangeEvent } from "react";
@@ -40,7 +41,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
         placeholder="Search"
         value={search}
         onChange={handleSearchChange}
-        Icon={SearchIcon}
+        Icon={MagnifyingGlassIcon}
       />
       <div className="flex justify-end">
         <SelectMenu text="Sort">
@@ -76,8 +77,17 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             selected={sort === "name"}
           >
             <span className="flex items-center flex-grow">
-              <TranslateIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              <LanguageIcon className="w-5 h-5 mr-2" aria-hidden="true" />
               Name
+            </span>
+          </SelectMenuItem>
+          <SelectMenuItem
+            onClick={() => handleSortClick("achievements")}
+            selected={sort === "achievements"}
+          >
+            <span className="flex items-center flex-grow">
+              <StarIcon className="w-5 h-5 mr-2" />
+              Achievements
             </span>
           </SelectMenuItem>
         </SelectMenu>

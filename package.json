@@ -15,7 +15,7 @@
     "@fontsource/nunito": "^4.5.9",
     "@formkit/auto-animate": "1.0.0-beta.5",
     "@headlessui/react": "^1.6.6",
-    "@heroicons/react": "^1.0.6",
+    "@heroicons/react": "^2.2.0",
     "class-variance-authority": "^0.4.0",
     "next": "14.2.5",
     "nuqs": "^1.17.8",

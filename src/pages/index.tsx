@@ -33,6 +33,7 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
       "playtime",
       "rating",
       "name",
+      "achievements",
     ] as const).withDefault("completed")
   );
 

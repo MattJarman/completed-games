@@ -1,7 +1,7 @@
 import { ComponentProps, FC } from "react";
 
 export type TextInputProps = ComponentProps<"input"> & {
-  Icon: FC<ComponentProps<"svg">>;
+  Icon: FC<{ className?: string }>;
 };
 
 const TextInput: FC<TextInputProps> = ({ Icon, ...props }) => (
