@@ -33,8 +33,16 @@ describe("sortBy", () => {
   });
 
   test('sortBy("playtime") with undefined playtimes returns default order', () => {
-    const game1WithoutPlaytime = { ...game1, playtime: null };
-    const game2WithoutPlaytime = { ...game2, playtime: null };
+    const game1WithoutPlaytime = {
+      ...game1,
+      playtime: null,
+      completedAt: new Date(2).toDateString(),
+    };
+    const game2WithoutPlaytime = {
+      ...game2,
+      playtime: null,
+      completedAt: new Date(1).toDateString(),
+    };
     const games = [game2WithoutPlaytime, game1WithoutPlaytime];
 
     const [first, second] = sortBy(games, "playtime");
