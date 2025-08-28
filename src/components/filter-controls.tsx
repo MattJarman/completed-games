@@ -33,8 +33,8 @@ const FilterControls: React.FC<FilterControlsProps> = ({
   };
 
   return (
-    <div className="flex flex-col-reverse my-4 space-y-3 sm:items-center sm:space-x-3 sm:flex-row">
-      <div className="flex-grow"></div>
+    <div className="flex flex-col-reverse my-4 gap-3 sm:items-center sm:flex-row">
+      <div className="grow"></div>
       <TextInput
         id="game"
         name="filter"
@@ -49,7 +49,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             onClick={() => handleSortClick("completed")}
             selected={sort === "completed"}
           >
-            <span className="flex items-center flex-grow">
+            <span className="flex items-center grow">
               <CalendarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
               Completed
             </span>
@@ -58,7 +58,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             onClick={() => handleSortClick("playtime")}
             selected={sort === "playtime"}
           >
-            <span className="flex items-center flex-grow">
+            <span className="flex items-center grow">
               <ClockIcon className="w-5 h-5 mr-2" aria-hidden="true" />
               Playtime
             </span>
@@ -67,7 +67,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             onClick={() => handleSortClick("rating")}
             selected={sort === "rating"}
           >
-            <span className="flex items-center flex-grow">
+            <span className="flex items-center grow">
               <ChartBarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
               Rating
             </span>
@@ -76,7 +76,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             onClick={() => handleSortClick("name")}
             selected={sort === "name"}
           >
-            <span className="flex items-center flex-grow">
+            <span className="flex items-center grow">
               <LanguageIcon className="w-5 h-5 mr-2" aria-hidden="true" />
               Name
             </span>
@@ -85,7 +85,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             onClick={() => handleSortClick("achievements")}
             selected={sort === "achievements"}
           >
-            <span className="flex items-center flex-grow">
+            <span className="flex items-center grow">
               <StarIcon className="w-5 h-5 mr-2" />
               Achievements
             </span>

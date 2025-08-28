@@ -54,7 +54,7 @@ const renderOptions = (links: GameRichTextLinks): Options => {
         );
       },
       [BLOCKS.TABLE]: (_, children) => (
-        <div className="relative overflow-x-auto rounded-sm shadow-md sm:rounded-md">
+        <div className="relative overflow-x-auto rounded-xs shadow-md sm:rounded-md">
           <table className="w-full text-white table-fixed">
             <tbody>{children}</tbody>
           </table>
@@ -112,7 +112,7 @@ const renderOptions = (links: GameRichTextLinks): Options => {
           <div className="pl-4">{children}</div>
         </blockquote>
       ),
-      [BLOCKS.HR]: () => <hr className="border-1 border-sky-500" />,
+      [BLOCKS.HR]: () => <hr className="border border-sky-500" />,
     },
   };
 };
