@@ -7,7 +7,7 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-montserrat",
-  weight: ["300", "400", "500", "700"],
+  weight: ["300", "400", "500", "600", "700"],
 });
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => (

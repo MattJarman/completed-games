@@ -1,5 +1,5 @@
 import ContentfulImage from "@ui/contentful-image";
-import { getRatingColour } from "src/lib/utils";
+import { classNames, getRatingColour } from "src/lib/utils";
 import { AchievementIcon } from "src/components/icons";
 
 type GameCardProps = {
@@ -8,6 +8,7 @@ type GameCardProps = {
   img: string;
   rating: number;
   allAchievements: boolean;
+  interactive?: boolean;
 };
 
 const GameCard: React.FC<GameCardProps> = ({
@@ -16,8 +17,12 @@ const GameCard: React.FC<GameCardProps> = ({
   img,
   rating,
   allAchievements,
+  interactive = true,
 }) => (
-  <div className="game-card" data-testid={id}>
+  <div
+    className={classNames("game-card", !interactive && "pointer-events-none")}
+    data-testid={id}
+  >
     {allAchievements && (
       <AchievementIcon className="absolute z-40 top-1 right-0 w-8" />
     )}
@@ -35,7 +40,7 @@ const GameCard: React.FC<GameCardProps> = ({
     />
     <div className="relative bottom-0 flex items-center justify-center w-full">
       <span
-        className="absolute z-40 px-2 font-bold rounded-xs -bottom-2"
+        className="absolute z-40 px-2 font-semibold rounded-xs -bottom-3 shadow-lg tracking-wider"
         style={{ background: getRatingColour(rating) }}
       >
         {rating}
