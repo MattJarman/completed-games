@@ -155,7 +155,7 @@ const Game: NextPage<GamePageProps> = ({ game }) => {
                 <Button
                   intent="secondary"
                   onClick={() => {
-                    domToPng(ref.current as Node, { scale: 2 }).then(
+                    domToPng(ref.current as Node, { scale: 4 }).then(
                       (dataUrl) => {
                         const link = document.createElement("a");
                         link.download = "game.png";
