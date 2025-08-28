@@ -1,7 +1,7 @@
 import { cva, VariantProps } from "class-variance-authority";
 import type { FC, PropsWithChildren } from "react";
 
-const tableCellStyles = cva("px-2 py-3 border-[1px] border-gray-600", {
+const tableCellStyles = cva("px-2 py-3 border border-gray-600", {
   variants: {
     intent: {
       primary: "font-bold text-white",
@@ -14,7 +14,7 @@ const tableCellStyles = cva("px-2 py-3 border-[1px] border-gray-600", {
 });
 
 const tableStyles = cva(
-  "text-sm text-white border-[1px] border-collapse border-gray-600",
+  "text-sm text-white border border-collapse border-gray-600",
   {
     variants: {
       widthLg: {

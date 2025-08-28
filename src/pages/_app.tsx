@@ -17,7 +17,7 @@ const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => (
         --font-montserrat: ${montserrat.style.fontFamily};
       }
     `}</style>
-    <main className="container flex-grow px-4 mx-auto mb-auto lg:px-32">
+    <main className="container grow px-4 mx-auto mb-auto lg:px-32">
       <Component {...pageProps} />
     </main>
   </div>

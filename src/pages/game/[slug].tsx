@@ -139,12 +139,12 @@ const Game: NextPage<GamePageProps> = ({ game }) => {
                       link.click();
                     });
                   }}
-                  className="bg-white px-2 py-2 rounded-sm shadow-lg text-sm font-medium inline-flex gap-2"
+                  className="bg-white px-2 py-2 rounded-xs shadow-lg text-sm font-medium inline-flex gap-2"
                 >
                   <FolderArrowDownIcon className="w-4" />
                   Save Image
                 </button>
-                <button className="bg-white px-2 py-2 rounded-sm shadow-lg text-sm font-medium inline-flex gap-2">
+                <button className="bg-white px-2 py-2 rounded-xs shadow-lg text-sm font-medium inline-flex gap-2">
                   <FolderArrowDownIcon className="w-4" />
                   Share
                 </button>
