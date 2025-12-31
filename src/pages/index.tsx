@@ -78,7 +78,9 @@ const Home: NextPage<HomeProps> = ({ allGames, completedAtYears }) => {
       </Head>
       <div className="my-8">
         <div className="flex items-center my-4 space-x-3">
-          <div className="grow"></div>
+          <div className="grow text-gray-300 text-sm mt-8">
+            {filteredGames.length} Games
+          </div>
           <FilterControls
             sort={sort}
             search={query}
