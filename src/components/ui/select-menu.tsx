@@ -17,10 +17,10 @@ const SelectMenu: FC<PropsWithChildren<SelectMenuProps>> = ({
   children,
 }) => (
   <Menu as="div" className="relative inline-block text-left">
-    <Menu.Button className="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-300 bg-gray-800 rounded-md hover:bg-opacity-30">
+    <Menu.Button className="inline-flex justify-between items-center w-32 px-3 py-2 text-sm font-medium text-gray-300 bg-gray-800 rounded-md hover:bg-opacity-30">
       {text}
       <ChevronDownIcon
-        className="w-5 h-5 ml-2 -mr-1 text-violet-200 hover:text-violet-100"
+        className="w-4 h-4 ml-2 -mr-1 text-gray-500"
         aria-hidden="true"
       />
     </Menu.Button>
@@ -50,7 +50,7 @@ export const SelectMenuItem: FC<PropsWithChildren<SelectMenuItemProps>> = ({
       <button
         {...buttonProps}
         className={classNames(
-          "group flex w-full items-center rounded-md px-2 py-2 text-sm",
+          "group flex w-full items-center rounded-md px-2 py-1.5 text-sm",
           active ? "bg-gray-900 text-white" : "text-gray-300"
         )}
       >
@@ -58,13 +58,23 @@ export const SelectMenuItem: FC<PropsWithChildren<SelectMenuItemProps>> = ({
         {selected && (
           <CheckIcon
             data-testid="check"
-            className="w-5 h-5"
+            className="w-4 h-4"
             aria-hidden="true"
           />
         )}
       </button>
     )}
   </Menu.Item>
+);
+
+export const SelectMenuTitle: FC<PropsWithChildren> = ({ children }) => (
+  <div className="group flex w-full items-center rounded-md px-2 py-1.5 text-sm text-gray-300 font-semibold">
+    {children}
+  </div>
+);
+
+export const SelectMenuSeparator: FC = () => (
+  <div className="bg-gray-600 h-[1px] my-1.5 mx-1"></div>
 );
 
 export default SelectMenu;
