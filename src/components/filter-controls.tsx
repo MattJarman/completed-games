@@ -6,7 +6,11 @@ import {
   LanguageIcon,
   StarIcon,
 } from "@heroicons/react/24/solid";
-import SelectMenu, { SelectMenuItem } from "@ui/select-menu";
+import SelectMenu, {
+  SelectMenuItem,
+  SelectMenuSeparator,
+  SelectMenuTitle,
+} from "@ui/select-menu";
 import TextInput from "@ui/text-input";
 import { ChangeEvent } from "react";
 import { Sort } from "src/schemas/sort";
@@ -14,18 +18,24 @@ import { Sort } from "src/schemas/sort";
 export type FilterControlsProps = {
   sort?: Sort;
   search?: string;
+  completedAtYears: Array<number>;
+  availableCompletedAtYears: Array<number>;
   onSortChange: (sort: Sort) => void;
-  onSearchChange: (search: string) => void;
+  onSearchChange: (search: string | null) => void;
+  onCompletedAtFilterChange: (year: Array<number> | null) => void;
 };
 
 const FilterControls: React.FC<FilterControlsProps> = ({
   sort,
   search,
+  completedAtYears,
+  availableCompletedAtYears,
   onSortChange,
   onSearchChange,
+  onCompletedAtFilterChange,
 }) => {
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
-    onSearchChange(event.target.value);
+    onSearchChange(event.target.value || null);
   };
 
   const handleSortClick = (sort: Sort) => {
@@ -43,14 +53,45 @@ const FilterControls: React.FC<FilterControlsProps> = ({
         onChange={handleSearchChange}
         Icon={MagnifyingGlassIcon}
       />
-      <div className="flex justify-end">
+      <div className="flex gap-2 justify-end">
+        <SelectMenu text="Filter">
+          <SelectMenuTitle>Year</SelectMenuTitle>
+          <SelectMenuSeparator />
+          {availableCompletedAtYears.map((year) => {
+            const isSelected = Boolean(completedAtYears?.includes(year));
+            const handleCompletedAtYearSelected = (year: number) => {
+              const updatedCompletedAtYears = isSelected
+                ? completedAtYears.filter(
+                    (completedAtYear) => completedAtYear !== year
+                  )
+                : completedAtYears.concat(year).sort((a, b) => b - a);
+
+              if (updatedCompletedAtYears.length === 0) {
+                onCompletedAtFilterChange(null);
+                return;
+              }
+
+              onCompletedAtFilterChange(updatedCompletedAtYears);
+            };
+
+            return (
+              <SelectMenuItem
+                key={year}
+                onClick={() => handleCompletedAtYearSelected(year)}
+                selected={completedAtYears?.includes(year) || false}
+              >
+                <span className="flex items-center grow">{year}</span>
+              </SelectMenuItem>
+            );
+          })}
+        </SelectMenu>
         <SelectMenu text="Sort">
           <SelectMenuItem
             onClick={() => handleSortClick("completed")}
             selected={sort === "completed"}
           >
             <span className="flex items-center grow">
-              <CalendarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              <CalendarIcon className="w-4 h-4 mr-2" aria-hidden="true" />
               Completed
             </span>
           </SelectMenuItem>
@@ -59,7 +100,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             selected={sort === "playtime"}
           >
             <span className="flex items-center grow">
-              <ClockIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              <ClockIcon className="w-4 h-4 mr-2" aria-hidden="true" />
               Playtime
             </span>
           </SelectMenuItem>
@@ -68,7 +109,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             selected={sort === "rating"}
           >
             <span className="flex items-center grow">
-              <ChartBarIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              <ChartBarIcon className="w-4 h-4 mr-2" aria-hidden="true" />
               Rating
             </span>
           </SelectMenuItem>
@@ -77,7 +118,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             selected={sort === "name"}
           >
             <span className="flex items-center grow">
-              <LanguageIcon className="w-5 h-5 mr-2" aria-hidden="true" />
+              <LanguageIcon className="w-4 h-4 mr-2" aria-hidden="true" />
               Name
             </span>
           </SelectMenuItem>
@@ -86,7 +127,7 @@ const FilterControls: React.FC<FilterControlsProps> = ({
             selected={sort === "achievements"}
           >
             <span className="flex items-center grow">
-              <StarIcon className="w-5 h-5 mr-2" />
+              <StarIcon className="w-4 h-4 mr-2" />
               Achievements
             </span>
           </SelectMenuItem>

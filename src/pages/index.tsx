@@ -3,24 +3,33 @@ import GameCard from "@ui/game-card";
 import { GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import Link from "next/link";
-import { parseAsString, parseAsStringLiteral, useQueryState } from "nuqs";
+import {
+  parseAsString,
+  parseAsStringLiteral,
+  parseAsArrayOf,
+  parseAsInteger,
+  useQueryState,
+} from "nuqs";
 import { useMemo } from "react";
 import FilterControls from "src/components/filter-controls";
 import { getAllGames } from "src/lib/contentful";
+import { getCompletedAtYears } from "src/lib/utils";
 import { sortBy } from "src/lib/utils/sort";
 import { Game as ContentfulGame } from "src/schemas/game";
 
 export type HomeProps = {
   allGames: ContentfulGame[];
+  completedAtYears: Array<number>;
 };
 
 export const getStaticProps: GetStaticProps<HomeProps> = async () => {
   const allGames = await getAllGames();
+  const completedAtYears = getCompletedAtYears(allGames);
 
-  return { props: { allGames } };
+  return { props: { allGames, completedAtYears } };
 };
 
-const Home: NextPage<HomeProps> = ({ allGames }) => {
+const Home: NextPage<HomeProps> = ({ allGames, completedAtYears }) => {
   const [parent] = useAutoAnimate<HTMLDivElement>();
   const [query, setQuery] = useQueryState(
     "query",
@@ -37,15 +46,31 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
     ] as const).withDefault("completed")
   );
 
+  const [completedAtFilters, setCompletedAtFilters] = useQueryState(
+    "completedAt",
+    parseAsArrayOf(parseAsInteger)
+  );
+
+  console.log(completedAtFilters);
+
   const filteredGames = useMemo(() => {
-    if (!query) {
-      return allGames;
+    let filteredGames: ContentfulGame[] = allGames;
+
+    console.log(completedAtFilters);
+    if (completedAtFilters) {
+      filteredGames = allGames.filter((game) =>
+        completedAtFilters.includes(new Date(game.completedAt).getFullYear())
+      );
     }
 
-    return allGames.filter((game) =>
-      game.title.toLowerCase().includes(query.toLowerCase())
-    );
-  }, [allGames, query]);
+    if (query) {
+      filteredGames = allGames.filter((game) =>
+        game.title.toLowerCase().includes(query.toLowerCase())
+      );
+    }
+
+    return filteredGames;
+  }, [allGames, completedAtFilters, query]);
 
   return (
     <>
@@ -60,8 +85,11 @@ const Home: NextPage<HomeProps> = ({ allGames }) => {
           <FilterControls
             sort={sort}
             search={query}
+            completedAtYears={completedAtFilters || []}
+            availableCompletedAtYears={completedAtYears}
             onSortChange={setSort}
             onSearchChange={setQuery}
+            onCompletedAtFilterChange={setCompletedAtFilters}
           />
         </div>
         <div

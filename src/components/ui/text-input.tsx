@@ -13,7 +13,7 @@ const TextInput: FC<TextInputProps> = ({ Icon, ...props }) => (
       </label>
       <input
         type="text"
-        className="flex-auto h-5 leading-6 text-gray-300 placeholder-gray-600 bg-transparent focus:outline-hidden focus:placeholder-gray-400"
+        className="flex-auto h-5 leading-6 text-gray-300 placeholder-gray-300 bg-transparent focus:outline-hidden focus:placeholder-gray-400"
         {...props}
       />
     </div>

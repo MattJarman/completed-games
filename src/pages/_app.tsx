@@ -1,20 +1,20 @@
 import type { NextPage } from "next";
 import type { AppProps } from "next/app";
 import "src/styles/globals.css";
-import { Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
 
-const montserrat = Montserrat({
+const inter = Inter({
   subsets: ["latin"],
   display: "swap",
-  variable: "--font-montserrat",
+  variable: "--font-inter",
   weight: ["300", "400", "500", "600", "700"],
 });
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }) => (
-  <div className="flex flex-col min-h-screen transition-colors duration-300 bg-gray-900">
+  <div className="flex flex-col min-h-screen transition-colors duration-300 bg-gray-900 antialiased">
     <style jsx global>{`
       :root {
-        --font-montserrat: ${montserrat.style.fontFamily};
+        --font-inter: ${inter.style.fontFamily};
       }
     `}</style>
     <main className="container grow px-4 mx-auto mb-auto lg:px-32">
