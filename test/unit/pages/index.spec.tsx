@@ -23,7 +23,7 @@ const game2 = makeGame({
 describe("HomePage", () => {
   describe("HomePage rendering", () => {
     it("renders the home page correctly", () => {
-      render(<HomePage allGames={[game]} />);
+      render(<HomePage allGames={[game]} completedAtYears={[]} />);
 
       const card = screen.getByTestId(game.sys.id);
 
@@ -33,7 +33,7 @@ describe("HomePage", () => {
 
     it("filters game cards on search input", async () => {
       const user = userEvent.setup();
-      render(<HomePage allGames={[game, game2]} />);
+      render(<HomePage allGames={[game, game2]} completedAtYears={[]} />);
 
       const card = screen.getByTestId(game.sys.id);
       const card2 = screen.getByTestId(game2.sys.id);
@@ -55,7 +55,12 @@ describe("HomePage", () => {
     it("returns allGames as props", async () => {
       mockGetAllGames.mockResolvedValueOnce([game]);
       const result = await getStaticProps({});
-      expect(result).toEqual({ props: { allGames: [game] } });
+      expect(result).toEqual({
+        props: {
+          allGames: [game],
+          completedAtYears: [new Date(game.completedAt).getFullYear()],
+        },
+      });
     });
   });
 });

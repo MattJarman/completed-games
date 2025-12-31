@@ -51,20 +51,17 @@ const Home: NextPage<HomeProps> = ({ allGames, completedAtYears }) => {
     parseAsArrayOf(parseAsInteger)
   );
 
-  console.log(completedAtFilters);
-
   const filteredGames = useMemo(() => {
     let filteredGames: ContentfulGame[] = allGames;
 
-    console.log(completedAtFilters);
     if (completedAtFilters) {
-      filteredGames = allGames.filter((game) =>
+      filteredGames = filteredGames.filter((game) =>
         completedAtFilters.includes(new Date(game.completedAt).getFullYear())
       );
     }
 
     if (query) {
-      filteredGames = allGames.filter((game) =>
+      filteredGames = filteredGames.filter((game) =>
         game.title.toLowerCase().includes(query.toLowerCase())
       );
     }

@@ -17,9 +17,11 @@ describe("FilterControls", () => {
 
       render(
         <FilterControls
-          initialSort="completed"
           onSortChange={setSort}
           onSearchChange={jest.fn()}
+          completedAtYears={[]}
+          availableCompletedAtYears={[]}
+          onCompletedAtFilterChange={jest.fn()}
         />
       );
 
