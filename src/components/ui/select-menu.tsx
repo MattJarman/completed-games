@@ -68,13 +68,13 @@ export const SelectMenuItem: FC<PropsWithChildren<SelectMenuItemProps>> = ({
 );
 
 export const SelectMenuTitle: FC<PropsWithChildren> = ({ children }) => (
-  <div className="group flex w-full items-center rounded-md px-2 py-1.5 text-sm text-gray-300 font-semibold">
+  <div className="group flex w-full items-center rounded-md px-2 py-1.5 text-gray-300 font-semibold">
     {children}
   </div>
 );
 
 export const SelectMenuSeparator: FC = () => (
-  <div className="bg-gray-600 h-[1px] my-1.5 mx-1"></div>
+  <div className="bg-gray-700 h-[2px] my-1.5 mx-1 rounded-md"></div>
 );
 
 export default SelectMenu;

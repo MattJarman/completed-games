@@ -20,9 +20,11 @@ export type FilterControlsProps = {
   search?: string;
   completedAtYears: Array<number>;
   availableCompletedAtYears: Array<number>;
+  completionFilterValue: "allAchievements" | null;
   onSortChange: (sort: Sort) => void;
   onSearchChange: (search: string | null) => void;
   onCompletedAtFilterChange: (year: Array<number> | null) => void;
+  onCompletionFilterChange: (completion: "allAchievements" | null) => void;
 };
 
 const FilterControls: React.FC<FilterControlsProps> = ({
@@ -30,9 +32,11 @@ const FilterControls: React.FC<FilterControlsProps> = ({
   search,
   completedAtYears,
   availableCompletedAtYears,
+  completionFilterValue,
   onSortChange,
   onSearchChange,
   onCompletedAtFilterChange,
+  onCompletionFilterChange,
 }) => {
   const handleSearchChange = (event: ChangeEvent<HTMLInputElement>) => {
     onSearchChange(event.target.value || null);
@@ -56,7 +60,6 @@ const FilterControls: React.FC<FilterControlsProps> = ({
       <div className="flex gap-2 justify-end">
         <SelectMenu text="Filter">
           <SelectMenuTitle>Year</SelectMenuTitle>
-          <SelectMenuSeparator />
           {availableCompletedAtYears.map((year) => {
             const isSelected = Boolean(completedAtYears?.includes(year));
             const handleCompletedAtYearSelected = (year: number) => {
@@ -84,6 +87,19 @@ const FilterControls: React.FC<FilterControlsProps> = ({
               </SelectMenuItem>
             );
           })}
+
+          <SelectMenuSeparator />
+          <SelectMenuTitle>Completion</SelectMenuTitle>
+          <SelectMenuItem
+            onClick={() =>
+              completionFilterValue === "allAchievements"
+                ? onCompletionFilterChange(null)
+                : onCompletionFilterChange("allAchievements")
+            }
+            selected={completionFilterValue === "allAchievements"}
+          >
+            <span className="flex items-center grow">All Achievements</span>
+          </SelectMenuItem>
         </SelectMenu>
         <SelectMenu text="Sort">
           <SelectMenuItem

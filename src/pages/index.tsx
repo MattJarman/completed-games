@@ -50,6 +50,10 @@ const Home: NextPage<HomeProps> = ({ allGames, completedAtYears }) => {
     "completedAt",
     parseAsArrayOf(parseAsInteger)
   );
+  const [completionFilter, setCompletionFilter] = useQueryState(
+    "completion",
+    parseAsStringLiteral(["allAchievements"] as const)
+  );
 
   const filteredGames = useMemo(() => {
     let filteredGames: ContentfulGame[] = allGames;
@@ -60,6 +64,10 @@ const Home: NextPage<HomeProps> = ({ allGames, completedAtYears }) => {
       );
     }
 
+    if (completionFilter === "allAchievements") {
+      filteredGames = filteredGames.filter((game) => game.allAchievements);
+    }
+
     if (query) {
       filteredGames = filteredGames.filter((game) =>
         game.title.toLowerCase().includes(query.toLowerCase())
@@ -67,7 +75,7 @@ const Home: NextPage<HomeProps> = ({ allGames, completedAtYears }) => {
     }
 
     return filteredGames;
-  }, [allGames, completedAtFilters, query]);
+  }, [completionFilter, allGames, completedAtFilters, query]);
 
   return (
     <>
@@ -86,9 +94,11 @@ const Home: NextPage<HomeProps> = ({ allGames, completedAtYears }) => {
             search={query}
             completedAtYears={completedAtFilters || []}
             availableCompletedAtYears={completedAtYears}
+            completionFilterValue={completionFilter}
             onSortChange={setSort}
             onSearchChange={setQuery}
             onCompletedAtFilterChange={setCompletedAtFilters}
+            onCompletionFilterChange={setCompletionFilter}
           />
         </div>
         <div
